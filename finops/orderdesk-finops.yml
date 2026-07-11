@@ -1,0 +1,75 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Order Desk
+providerId: orderdesk
+created: '2026-07-11'
+modified: '2026-07-11'
+reconciled: false
+tags:
+- Ecommerce
+- Order Management
+- Fulfillment
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of Order Desk spend. Order Desk bills on two dimensions: a fixed
+  monthly subscription fee tied to the plan tier (Starter, Pro, Plus) and a
+  variable per-order fee charged for every order created in the store during the
+  billing period. Higher tiers trade a larger fixed fee for a lower marginal
+  per-order rate, so the cost-optimal plan depends on monthly order volume. The
+  REST API does not carry a separate charge - programmatically created orders are
+  billed identically to orders from any other source.
+notes: >-
+  Per-order fees range from USD 0.05 (Plus) to USD 0.25 (Starter). The dominant
+  variable cost driver is order volume, so the break-even between tiers is a
+  function of orders per month. Verify current rates on the Order Desk pricing
+  page during reconciliation.
+sources:
+- https://www.orderdesk.com/pricing/
+- https://help.orderdesk.com/order-desk-101/how-does-order-desks-pricing-work/
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Order Desk
+serviceCategory: Ecommerce and Order Management
+billingModel:
+  pricingCategory: Subscription-Plus-Usage
+  billingFrequency: Monthly
+  billingCurrency: USD
+  chargeCategories:
+  - Purchase
+  - Usage
+meters:
+- name: monthly_subscription
+  description: Fixed monthly platform fee for the selected plan tier.
+  unit: months
+  aggregation: sum
+  dimensions:
+  - account
+  - plan
+- name: order_fee
+  description: Per-order fee charged for each order created in the store during the billing period.
+  unit: orders
+  aggregation: sum
+  dimensions:
+  - account
+  - store
+  - source
+principles:
+- name: Visibility
+  description: Track order counts per store and source so the variable per-order fee is attributable to the channels and integrations driving volume.
+- name: Allocation
+  description: Use child stores and order sources to map order fees to internal brands, clients, or cost centers.
+- name: Optimization
+  description: Match the plan tier to monthly order volume - the higher fixed fee on Pro or Plus pays off once volume makes the lower per-order rate cheaper than Starter's.
+- name: Accountability
+  description: Review monthly invoices (subscription plus previous-period order fees) against forecast order volume and re-evaluate the tier as volume grows.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

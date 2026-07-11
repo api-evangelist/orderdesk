@@ -1,0 +1,55 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Order Desk
+providerId: orderdesk
+created: '2026-07-11'
+modified: '2026-07-11'
+reconciled: false
+tags:
+- Ecommerce
+- Order Management
+- Rate Limiting
+- Quotas
+description: >-
+  The Order Desk API is rate limited with a leaky-bucket algorithm. Each store
+  starts with a bucket of 20 requests that refills at 3 requests per second,
+  which works out to roughly 100 requests available over a rolling 30-second
+  window. The number of requests remaining is returned on every response in the
+  X-Tokens-Remaining header. When the bucket is empty the API returns HTTP 429
+  and includes an X-Retry-After header indicating how many seconds to wait
+  before retrying.
+notes: >-
+  Limits verified from the Order Desk API reference on the created date and may
+  change. List endpoints also cap page size at 500 records (limit parameter,
+  default 50), which bounds how much data a single request can return.
+sources:
+- https://apidocs.orderdesk.com/
+responseCodes:
+  throttled: 429
+limits:
+- name: Leaky Bucket Capacity
+  scope: store
+  metric: requests
+  limit: 20 requests (initial bucket)
+  notes: Each store's bucket holds up to 20 requests before throttling.
+- name: Refill Rate
+  scope: store
+  metric: requests
+  limit: 3 requests per second
+  notes: The bucket refills at 3 requests/second, ~100 requests per rolling 30-second window.
+- name: List Page Size
+  scope: request
+  metric: records
+  limit: 500 (max limit parameter, default 50)
+  notes: The limit query parameter caps records returned per list request.
+policies:
+- name: Remaining Quota Header
+  description: Every response includes X-Tokens-Remaining showing how many requests are left in the bucket.
+- name: Retry-After
+  description: 429 responses include X-Retry-After with the number of seconds to wait before retrying.
+- name: Backoff Strategy
+  description: Clients should throttle to about 3 requests/second, watch X-Tokens-Remaining, and honor X-Retry-After with exponential backoff on 429 responses.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

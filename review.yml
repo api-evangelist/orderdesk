@@ -1,0 +1,97 @@
+aid: orderdesk
+name: Order Desk
+review:
+  question: Does Order Desk expose a documented public WebSocket API?
+  answer: false
+  date: '2026-07-11'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was authored. Order Desk's public developer surface is a
+    request/response REST API (base https://app.orderdesk.me/api/v2) authenticated
+    with ORDERDESK-STORE-ID and ORDERDESK-API-KEY headers. There is no
+    server-push transport (WebSocket or SSE) on Order Desk's own API to model.
+    Order Desk does emit outbound webhooks and offers inbound integrations, but
+    those are configured in the store dashboard and are HTTP POST callbacks, not a
+    WebSocket surface exposed by this API.
+findings:
+  summary: |
+    Order Desk does not publish a documented public WebSocket API. Order Desk is
+    an ecommerce order management and fulfillment routing platform. Its public
+    API is a JSON REST API at base https://app.orderdesk.me/api/v2, documented at
+    apidocs.orderdesk.com (the older apidocs.orderdesk.me host 301-redirects
+    there). Every request is authenticated with two headers, ORDERDESK-STORE-ID
+    and ORDERDESK-API-KEY, scoping the call to a single store. The API covers
+    Orders, Order Items, Shipments, Inventory Items, and Store settings, plus
+    batch and utility endpoints (batch-shipments, batch-inventory-items,
+    move-orders, store, test). It is pure request/response REST over HTTPS. No
+    realtime, bidirectional, or streaming WebSocket (ws:// or wss://) endpoint is
+    documented anywhere in the Order Desk API reference as of the review date.
+  openSource: |
+    Order Desk is a closed-source hosted SaaS platform. There is no open-source
+    server component; the API is consumed against Order Desk's managed
+    infrastructure. Client SDKs and community libraries exist but the platform
+    itself is proprietary.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://app.orderdesk.me/api/v2
+      documented: true
+      note: JSON REST API for Orders, Order Items, Shipments, Inventory Items, and Store. Header auth with ORDERDESK-STORE-ID and ORDERDESK-API-KEY.
+    - protocol: Webhook
+      scheme: https
+      documented: true
+      note: Order Desk can POST outbound webhooks and drive inbound integrations, configured in the store dashboard - HTTP callbacks, not part of the REST API surface and not a WebSocket.
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented anywhere in the Order Desk API reference as of the review date.
+  endpointsConfirmedRest:
+    - GET    https://app.orderdesk.me/api/v2/test
+    - GET    https://app.orderdesk.me/api/v2/store
+    - GET    https://app.orderdesk.me/api/v2/orders
+    - POST   https://app.orderdesk.me/api/v2/orders
+    - GET    https://app.orderdesk.me/api/v2/orders/{order_id}
+    - PUT    https://app.orderdesk.me/api/v2/orders/{order_id}
+    - DELETE https://app.orderdesk.me/api/v2/orders/{order_id}
+    - POST   https://app.orderdesk.me/api/v2/orders/{order_id}/order-history
+    - POST   https://app.orderdesk.me/api/v2/move-orders
+    - GET    https://app.orderdesk.me/api/v2/orders/{order_id}/order-items
+    - POST   https://app.orderdesk.me/api/v2/orders/{order_id}/order-items
+    - GET    https://app.orderdesk.me/api/v2/orders/{order_id}/order-items/{item_id}
+    - PUT    https://app.orderdesk.me/api/v2/orders/{order_id}/order-items/{item_id}
+    - DELETE https://app.orderdesk.me/api/v2/orders/{order_id}/order-items/{item_id}
+    - GET    https://app.orderdesk.me/api/v2/orders/{order_id}/shipments
+    - POST   https://app.orderdesk.me/api/v2/orders/{order_id}/shipments
+    - GET    https://app.orderdesk.me/api/v2/orders/{order_id}/shipments/{shipment_id}
+    - PUT    https://app.orderdesk.me/api/v2/orders/{order_id}/shipments/{shipment_id}
+    - DELETE https://app.orderdesk.me/api/v2/orders/{order_id}/shipments/{shipment_id}
+    - POST   https://app.orderdesk.me/api/v2/batch-shipments
+    - GET    https://app.orderdesk.me/api/v2/inventory-items
+    - POST   https://app.orderdesk.me/api/v2/inventory-items
+    - GET    https://app.orderdesk.me/api/v2/inventory-items/{id}
+    - PUT    https://app.orderdesk.me/api/v2/inventory-items/{id}
+    - DELETE https://app.orderdesk.me/api/v2/inventory-items/{id}
+    - PUT    https://app.orderdesk.me/api/v2/batch-inventory-items
+sources:
+  - url: https://apidocs.orderdesk.com/
+    type: Documentation
+    note: Order Desk API reference - base URL, header auth, and all resource endpoints. All REST. No WebSocket mentioned.
+  - url: https://www.orderdesk.com/
+    type: Website
+    note: Product overview - ecommerce order management and fulfillment routing.
+  - url: https://www.orderdesk.com/pricing/
+    type: Pricing
+    note: Starter/Pro/Plus plans with monthly fee plus per-order fee.
+  - url: https://help.orderdesk.com/order-desk-101/how-does-order-desks-pricing-work/
+    type: Documentation
+    note: Billing model - subscription fee plus per-order fee, 30-day trial.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket protocol surface exists. Order Desk's public API is
+    request/response REST over HTTPS. No AsyncAPI document was created because
+    there is no server-push transport on Order Desk's own API to model; outbound
+    webhooks are dashboard-configured HTTP callbacks rather than a documented
+    streaming API.

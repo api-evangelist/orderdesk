@@ -1,0 +1,147 @@
+aid: orderdesk
+url: https://raw.githubusercontent.com/api-evangelist/orderdesk/refs/heads/main/apis.yml
+name: Order Desk
+kind: company
+description: Order Desk is an ecommerce order management and fulfillment routing platform
+  that centralizes orders from shopping carts and marketplaces, then automates
+  routing to print-on-demand, dropshipping, warehouse, and shipping providers via a
+  rule builder and 300-plus integrations. Its public REST API (base
+  https://app.orderdesk.me/api/v2, authenticated with store-id and api-key headers)
+  exposes Orders, Order Items, Shipments, Inventory Items, and Store settings so
+  developers can create and update orders, manage line items, record shipments and
+  tracking, and sync inventory programmatically.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Ecommerce
+- Order Management
+- Fulfillment
+- Dropshipping
+- Inventory
+- Shipping
+created: '2026-07-11'
+modified: '2026-07-11'
+specificationVersion: '0.19'
+apis:
+- aid: orderdesk:orderdesk-orders-api
+  name: Order Desk Orders API
+  tags:
+  - Orders
+  - Order Management
+  - Ecommerce
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://apidocs.orderdesk.com/
+  baseURL: https://app.orderdesk.me/api/v2
+  properties:
+  - url: https://apidocs.orderdesk.com/
+    type: Documentation
+  - url: https://apidocs.orderdesk.com/
+    type: APIReference
+  - url: openapi/orderdesk-openapi.yml
+    type: OpenAPI
+  - url: collections/orderdesk.postman_collection.json
+    type: PostmanCollection
+  - url: collections/orderdesk.opencollection.json
+    type: OpenCollection
+  description: Create, retrieve, search, update, and delete orders in an Order Desk
+    store. Filter orders by folder, status, source, date, and customer, add order
+    history notes, and move orders between folders to drive fulfillment workflows.
+- aid: orderdesk:orderdesk-order-items-api
+  name: Order Desk Order Items API
+  tags:
+  - Order Items
+  - Line Items
+  - Orders
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://apidocs.orderdesk.com/
+  baseURL: https://app.orderdesk.me/api/v2
+  properties:
+  - url: https://apidocs.orderdesk.com/
+    type: APIReference
+  - url: openapi/orderdesk-openapi.yml
+    type: OpenAPI
+  - url: collections/orderdesk.postman_collection.json
+    type: PostmanCollection
+  - url: collections/orderdesk.opencollection.json
+    type: OpenCollection
+  description: Manage the individual line items within an order - list, get, add,
+    update, and remove items, adjust quantities, prices, variations, and per-item
+    metadata without rewriting the whole order.
+- aid: orderdesk:orderdesk-shipments-api
+  name: Order Desk Shipments API
+  tags:
+  - Shipments
+  - Tracking
+  - Fulfillment
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://apidocs.orderdesk.com/
+  baseURL: https://app.orderdesk.me/api/v2
+  properties:
+  - url: https://apidocs.orderdesk.com/
+    type: APIReference
+  - url: openapi/orderdesk-openapi.yml
+    type: OpenAPI
+  - url: collections/orderdesk.postman_collection.json
+    type: PostmanCollection
+  - url: collections/orderdesk.opencollection.json
+    type: OpenCollection
+  description: Record and manage shipments against an order - create shipments with
+    carrier and tracking details, list, get, update, and delete them, and batch-add
+    many shipments at once to reconcile fulfillment from external providers.
+- aid: orderdesk:orderdesk-inventory-items-api
+  name: Order Desk Inventory Items API
+  tags:
+  - Inventory
+  - Stock
+  - Catalog
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://apidocs.orderdesk.com/
+  baseURL: https://app.orderdesk.me/api/v2
+  properties:
+  - url: https://apidocs.orderdesk.com/
+    type: APIReference
+  - url: openapi/orderdesk-openapi.yml
+    type: OpenAPI
+  - url: collections/orderdesk.postman_collection.json
+    type: PostmanCollection
+  - url: collections/orderdesk.opencollection.json
+    type: OpenCollection
+  description: Maintain the store's inventory catalog - list, get, create, update,
+    and delete inventory items by code, adjust stock counts, prices, and metadata,
+    and batch-update many items in a single request to keep stock in sync.
+- aid: orderdesk:orderdesk-store-api
+  name: Order Desk Store API
+  tags:
+  - Store Settings
+  - Folders
+  - Configuration
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://apidocs.orderdesk.com/
+  baseURL: https://app.orderdesk.me/api/v2
+  properties:
+  - url: https://apidocs.orderdesk.com/
+    type: APIReference
+  - url: openapi/orderdesk-openapi.yml
+    type: OpenAPI
+  - url: collections/orderdesk.postman_collection.json
+    type: PostmanCollection
+  - url: collections/orderdesk.opencollection.json
+    type: OpenCollection
+  description: Read store settings and structure - retrieve the store's folder list
+    and configuration, and test API connectivity and credentials before running
+    order, item, shipment, or inventory operations.
+common:
+- type: LinkedIn
+  url: https://www.linkedin.com/company/order-desk
+- type: Website
+  url: https://www.orderdesk.com
+- type: Documentation
+  url: https://apidocs.orderdesk.com/
+- type: Plans
+  url: plans/orderdesk-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/orderdesk-rate-limits.yml
+- type: FinOps
+  url: finops/orderdesk-finops.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

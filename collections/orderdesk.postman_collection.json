@@ -1,0 +1,391 @@
+{
+  "info": {
+    "name": "Order Desk API",
+    "description": "JSON REST API for managing an Order Desk store - Orders, Order Items, Shipments, Inventory Items, and Store settings. Base URL: https://app.orderdesk.me/api/v2. Every request requires the ORDERDESK-STORE-ID and ORDERDESK-API-KEY headers, found in the Order Desk dashboard under Store Settings then API.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "https://app.orderdesk.me/api/v2", "type": "string" },
+    { "key": "storeId", "value": "", "type": "string" },
+    { "key": "apiKey", "value": "", "type": "string" }
+  ],
+  "item": [
+    {
+      "name": "Store",
+      "item": [
+        {
+          "name": "Test connection",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "ORDERDESK-STORE-ID", "value": "{{storeId}}" },
+              { "key": "ORDERDESK-API-KEY", "value": "{{apiKey}}" }
+            ],
+            "url": { "raw": "{{baseUrl}}/test", "host": ["{{baseUrl}}"], "path": ["test"] },
+            "description": "Verifies the store ID and API key are valid."
+          }
+        },
+        {
+          "name": "Get store settings",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "ORDERDESK-STORE-ID", "value": "{{storeId}}" },
+              { "key": "ORDERDESK-API-KEY", "value": "{{apiKey}}" }
+            ],
+            "url": { "raw": "{{baseUrl}}/store", "host": ["{{baseUrl}}"], "path": ["store"] },
+            "description": "Returns the store's settings and folder structure."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Orders",
+      "item": [
+        {
+          "name": "Search orders",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "ORDERDESK-STORE-ID", "value": "{{storeId}}" },
+              { "key": "ORDERDESK-API-KEY", "value": "{{apiKey}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/orders?limit=50&offset=0",
+              "host": ["{{baseUrl}}"],
+              "path": ["orders"],
+              "query": [
+                { "key": "limit", "value": "50" },
+                { "key": "offset", "value": "0" }
+              ]
+            },
+            "description": "Retrieves multiple orders with optional filtering and pagination."
+          }
+        },
+        {
+          "name": "Create order",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "ORDERDESK-STORE-ID", "value": "{{storeId}}" },
+              { "key": "ORDERDESK-API-KEY", "value": "{{apiKey}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"source_id\": \"1001\",\n  \"email\": \"customer@example.com\",\n  \"order_items\": [\n    { \"name\": \"T-Shirt\", \"code\": \"TS-001\", \"price\": 19.99, \"quantity\": 1 }\n  ]\n}" },
+            "url": { "raw": "{{baseUrl}}/orders", "host": ["{{baseUrl}}"], "path": ["orders"] },
+            "description": "Creates a new order."
+          }
+        },
+        {
+          "name": "Get order",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "ORDERDESK-STORE-ID", "value": "{{storeId}}" },
+              { "key": "ORDERDESK-API-KEY", "value": "{{apiKey}}" }
+            ],
+            "url": { "raw": "{{baseUrl}}/orders/:order_id", "host": ["{{baseUrl}}"], "path": ["orders", ":order_id"], "variable": [{ "key": "order_id", "value": "" }] },
+            "description": "Retrieves a single order by ID."
+          }
+        },
+        {
+          "name": "Update order",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "ORDERDESK-STORE-ID", "value": "{{storeId}}" },
+              { "key": "ORDERDESK-API-KEY", "value": "{{apiKey}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"folder_id\": 2\n}" },
+            "url": { "raw": "{{baseUrl}}/orders/:order_id", "host": ["{{baseUrl}}"], "path": ["orders", ":order_id"], "variable": [{ "key": "order_id", "value": "" }] },
+            "description": "Updates an existing order."
+          }
+        },
+        {
+          "name": "Delete order",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              { "key": "ORDERDESK-STORE-ID", "value": "{{storeId}}" },
+              { "key": "ORDERDESK-API-KEY", "value": "{{apiKey}}" }
+            ],
+            "url": { "raw": "{{baseUrl}}/orders/:order_id", "host": ["{{baseUrl}}"], "path": ["orders", ":order_id"], "variable": [{ "key": "order_id", "value": "" }] },
+            "description": "Deletes an order."
+          }
+        },
+        {
+          "name": "Add order history note",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "ORDERDESK-STORE-ID", "value": "{{storeId}}" },
+              { "key": "ORDERDESK-API-KEY", "value": "{{apiKey}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"note\": \"Order reviewed and released to fulfillment.\"\n}" },
+            "url": { "raw": "{{baseUrl}}/orders/:order_id/order-history", "host": ["{{baseUrl}}"], "path": ["orders", ":order_id", "order-history"], "variable": [{ "key": "order_id", "value": "" }] },
+            "description": "Appends a note to the order's history log."
+          }
+        },
+        {
+          "name": "Move orders",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "ORDERDESK-STORE-ID", "value": "{{storeId}}" },
+              { "key": "ORDERDESK-API-KEY", "value": "{{apiKey}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"order_ids\": [\"1001\", \"1002\"],\n  \"folder_id\": 3\n}" },
+            "url": { "raw": "{{baseUrl}}/move-orders", "host": ["{{baseUrl}}"], "path": ["move-orders"] },
+            "description": "Moves orders into a different folder."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Order Items",
+      "item": [
+        {
+          "name": "List order items",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "ORDERDESK-STORE-ID", "value": "{{storeId}}" },
+              { "key": "ORDERDESK-API-KEY", "value": "{{apiKey}}" }
+            ],
+            "url": { "raw": "{{baseUrl}}/orders/:order_id/order-items", "host": ["{{baseUrl}}"], "path": ["orders", ":order_id", "order-items"], "variable": [{ "key": "order_id", "value": "" }] },
+            "description": "Returns all line items for an order."
+          }
+        },
+        {
+          "name": "Add order item",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "ORDERDESK-STORE-ID", "value": "{{storeId}}" },
+              { "key": "ORDERDESK-API-KEY", "value": "{{apiKey}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"Mug\",\n  \"code\": \"MUG-001\",\n  \"price\": 9.99,\n  \"quantity\": 2\n}" },
+            "url": { "raw": "{{baseUrl}}/orders/:order_id/order-items", "host": ["{{baseUrl}}"], "path": ["orders", ":order_id", "order-items"], "variable": [{ "key": "order_id", "value": "" }] },
+            "description": "Adds a line item to an order."
+          }
+        },
+        {
+          "name": "Get order item",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "ORDERDESK-STORE-ID", "value": "{{storeId}}" },
+              { "key": "ORDERDESK-API-KEY", "value": "{{apiKey}}" }
+            ],
+            "url": { "raw": "{{baseUrl}}/orders/:order_id/order-items/:item_id", "host": ["{{baseUrl}}"], "path": ["orders", ":order_id", "order-items", ":item_id"], "variable": [{ "key": "order_id", "value": "" }, { "key": "item_id", "value": "" }] },
+            "description": "Retrieves a single line item."
+          }
+        },
+        {
+          "name": "Update order item",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "ORDERDESK-STORE-ID", "value": "{{storeId}}" },
+              { "key": "ORDERDESK-API-KEY", "value": "{{apiKey}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"quantity\": 3\n}" },
+            "url": { "raw": "{{baseUrl}}/orders/:order_id/order-items/:item_id", "host": ["{{baseUrl}}"], "path": ["orders", ":order_id", "order-items", ":item_id"], "variable": [{ "key": "order_id", "value": "" }, { "key": "item_id", "value": "" }] },
+            "description": "Updates a line item."
+          }
+        },
+        {
+          "name": "Remove order item",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              { "key": "ORDERDESK-STORE-ID", "value": "{{storeId}}" },
+              { "key": "ORDERDESK-API-KEY", "value": "{{apiKey}}" }
+            ],
+            "url": { "raw": "{{baseUrl}}/orders/:order_id/order-items/:item_id", "host": ["{{baseUrl}}"], "path": ["orders", ":order_id", "order-items", ":item_id"], "variable": [{ "key": "order_id", "value": "" }, { "key": "item_id", "value": "" }] },
+            "description": "Removes a line item from an order."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Shipments",
+      "item": [
+        {
+          "name": "List shipments",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "ORDERDESK-STORE-ID", "value": "{{storeId}}" },
+              { "key": "ORDERDESK-API-KEY", "value": "{{apiKey}}" }
+            ],
+            "url": { "raw": "{{baseUrl}}/orders/:order_id/shipments", "host": ["{{baseUrl}}"], "path": ["orders", ":order_id", "shipments"], "variable": [{ "key": "order_id", "value": "" }] },
+            "description": "Returns all shipments recorded against an order."
+          }
+        },
+        {
+          "name": "Create shipment",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "ORDERDESK-STORE-ID", "value": "{{storeId}}" },
+              { "key": "ORDERDESK-API-KEY", "value": "{{apiKey}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"tracking_number\": \"1Z999AA10123456784\",\n  \"carrier_code\": \"UPS\",\n  \"shipment_method\": \"Ground\"\n}" },
+            "url": { "raw": "{{baseUrl}}/orders/:order_id/shipments", "host": ["{{baseUrl}}"], "path": ["orders", ":order_id", "shipments"], "variable": [{ "key": "order_id", "value": "" }] },
+            "description": "Records a new shipment with carrier and tracking details."
+          }
+        },
+        {
+          "name": "Get shipment",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "ORDERDESK-STORE-ID", "value": "{{storeId}}" },
+              { "key": "ORDERDESK-API-KEY", "value": "{{apiKey}}" }
+            ],
+            "url": { "raw": "{{baseUrl}}/orders/:order_id/shipments/:shipment_id", "host": ["{{baseUrl}}"], "path": ["orders", ":order_id", "shipments", ":shipment_id"], "variable": [{ "key": "order_id", "value": "" }, { "key": "shipment_id", "value": "" }] },
+            "description": "Retrieves a single shipment."
+          }
+        },
+        {
+          "name": "Update shipment",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "ORDERDESK-STORE-ID", "value": "{{storeId}}" },
+              { "key": "ORDERDESK-API-KEY", "value": "{{apiKey}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"tracking_number\": \"1Z999AA10123456785\"\n}" },
+            "url": { "raw": "{{baseUrl}}/orders/:order_id/shipments/:shipment_id", "host": ["{{baseUrl}}"], "path": ["orders", ":order_id", "shipments", ":shipment_id"], "variable": [{ "key": "order_id", "value": "" }, { "key": "shipment_id", "value": "" }] },
+            "description": "Updates a shipment."
+          }
+        },
+        {
+          "name": "Delete shipment",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              { "key": "ORDERDESK-STORE-ID", "value": "{{storeId}}" },
+              { "key": "ORDERDESK-API-KEY", "value": "{{apiKey}}" }
+            ],
+            "url": { "raw": "{{baseUrl}}/orders/:order_id/shipments/:shipment_id", "host": ["{{baseUrl}}"], "path": ["orders", ":order_id", "shipments", ":shipment_id"], "variable": [{ "key": "order_id", "value": "" }, { "key": "shipment_id", "value": "" }] },
+            "description": "Deletes a shipment."
+          }
+        },
+        {
+          "name": "Batch add shipments",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "ORDERDESK-STORE-ID", "value": "{{storeId}}" },
+              { "key": "ORDERDESK-API-KEY", "value": "{{apiKey}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"shipments\": [\n    { \"order_id\": \"1001\", \"tracking_number\": \"1Z999AA10123456784\", \"carrier_code\": \"UPS\" }\n  ]\n}" },
+            "url": { "raw": "{{baseUrl}}/batch-shipments", "host": ["{{baseUrl}}"], "path": ["batch-shipments"] },
+            "description": "Adds many shipments across orders in one request."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Inventory Items",
+      "item": [
+        {
+          "name": "List inventory items",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "ORDERDESK-STORE-ID", "value": "{{storeId}}" },
+              { "key": "ORDERDESK-API-KEY", "value": "{{apiKey}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/inventory-items?limit=50&offset=0",
+              "host": ["{{baseUrl}}"],
+              "path": ["inventory-items"],
+              "query": [
+                { "key": "limit", "value": "50" },
+                { "key": "offset", "value": "0" }
+              ]
+            },
+            "description": "Returns inventory items with pagination and optional search."
+          }
+        },
+        {
+          "name": "Create inventory item",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "ORDERDESK-STORE-ID", "value": "{{storeId}}" },
+              { "key": "ORDERDESK-API-KEY", "value": "{{apiKey}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"T-Shirt\",\n  \"code\": \"TS-001\",\n  \"price\": 19.99,\n  \"stock\": 100\n}" },
+            "url": { "raw": "{{baseUrl}}/inventory-items", "host": ["{{baseUrl}}"], "path": ["inventory-items"] },
+            "description": "Adds a new inventory item."
+          }
+        },
+        {
+          "name": "Get inventory item",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "ORDERDESK-STORE-ID", "value": "{{storeId}}" },
+              { "key": "ORDERDESK-API-KEY", "value": "{{apiKey}}" }
+            ],
+            "url": { "raw": "{{baseUrl}}/inventory-items/:id", "host": ["{{baseUrl}}"], "path": ["inventory-items", ":id"], "variable": [{ "key": "id", "value": "" }] },
+            "description": "Retrieves a single inventory item."
+          }
+        },
+        {
+          "name": "Update inventory item",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "ORDERDESK-STORE-ID", "value": "{{storeId}}" },
+              { "key": "ORDERDESK-API-KEY", "value": "{{apiKey}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"stock\": 80\n}" },
+            "url": { "raw": "{{baseUrl}}/inventory-items/:id", "host": ["{{baseUrl}}"], "path": ["inventory-items", ":id"], "variable": [{ "key": "id", "value": "" }] },
+            "description": "Updates an inventory item."
+          }
+        },
+        {
+          "name": "Delete inventory item",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              { "key": "ORDERDESK-STORE-ID", "value": "{{storeId}}" },
+              { "key": "ORDERDESK-API-KEY", "value": "{{apiKey}}" }
+            ],
+            "url": { "raw": "{{baseUrl}}/inventory-items/:id", "host": ["{{baseUrl}}"], "path": ["inventory-items", ":id"], "variable": [{ "key": "id", "value": "" }] },
+            "description": "Removes an inventory item."
+          }
+        },
+        {
+          "name": "Batch update inventory items",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "ORDERDESK-STORE-ID", "value": "{{storeId}}" },
+              { "key": "ORDERDESK-API-KEY", "value": "{{apiKey}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"inventory_items\": [\n    { \"code\": \"TS-001\", \"stock\": 75 },\n    { \"code\": \"MUG-001\", \"stock\": 40 }\n  ]\n}" },
+            "url": { "raw": "{{baseUrl}}/batch-inventory-items", "host": ["{{baseUrl}}"], "path": ["batch-inventory-items"] },
+            "description": "Creates or updates many inventory items in one request."
+          }
+        }
+      ]
+    }
+  ]
+}

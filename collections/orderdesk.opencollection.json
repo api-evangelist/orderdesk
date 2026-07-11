@@ -1,0 +1,298 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Order Desk API",
+    "version": "2.0",
+    "description": "JSON REST API for managing an Order Desk store - Orders, Order Items, Shipments, Inventory Items, and Store settings. Base URL: https://app.orderdesk.me/api/v2. Every request requires the ORDERDESK-STORE-ID and ORDERDESK-API-KEY headers."
+  },
+  "request": {
+    "headers": [
+      { "name": "ORDERDESK-STORE-ID", "value": "{{storeId}}" },
+      { "name": "ORDERDESK-API-KEY", "value": "{{apiKey}}" }
+    ]
+  },
+  "items": [
+    {
+      "info": { "name": "Store", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Test connection", "type": "http" },
+          "http": { "method": "GET", "url": "https://app.orderdesk.me/api/v2/test" },
+          "docs": "Verifies the store ID and API key are valid."
+        },
+        {
+          "info": { "name": "Get store settings", "type": "http" },
+          "http": { "method": "GET", "url": "https://app.orderdesk.me/api/v2/store" },
+          "docs": "Returns the store's settings and folder structure."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Orders", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Search orders", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://app.orderdesk.me/api/v2/orders",
+            "params": [
+              { "name": "limit", "value": "50", "type": "query", "description": "Records to return (default 50, max 500)." },
+              { "name": "offset", "value": "0", "type": "query", "description": "Records to skip." }
+            ]
+          },
+          "docs": "Retrieves multiple orders with optional filtering and pagination."
+        },
+        {
+          "info": { "name": "Create order", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://app.orderdesk.me/api/v2/orders",
+            "body": { "type": "json", "data": "{\n  \"source_id\": \"1001\",\n  \"email\": \"customer@example.com\",\n  \"order_items\": [ { \"name\": \"T-Shirt\", \"code\": \"TS-001\", \"price\": 19.99, \"quantity\": 1 } ]\n}" }
+          },
+          "docs": "Creates a new order."
+        },
+        {
+          "info": { "name": "Get order", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://app.orderdesk.me/api/v2/orders/:order_id",
+            "params": [ { "name": "order_id", "value": "", "type": "path", "description": "The ID of the order." } ]
+          },
+          "docs": "Retrieves a single order by ID."
+        },
+        {
+          "info": { "name": "Update order", "type": "http" },
+          "http": {
+            "method": "PUT",
+            "url": "https://app.orderdesk.me/api/v2/orders/:order_id",
+            "params": [ { "name": "order_id", "value": "", "type": "path", "description": "The ID of the order." } ],
+            "body": { "type": "json", "data": "{ \"folder_id\": 2 }" }
+          },
+          "docs": "Updates an existing order."
+        },
+        {
+          "info": { "name": "Delete order", "type": "http" },
+          "http": {
+            "method": "DELETE",
+            "url": "https://app.orderdesk.me/api/v2/orders/:order_id",
+            "params": [ { "name": "order_id", "value": "", "type": "path", "description": "The ID of the order." } ]
+          },
+          "docs": "Deletes an order."
+        },
+        {
+          "info": { "name": "Add order history note", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://app.orderdesk.me/api/v2/orders/:order_id/order-history",
+            "params": [ { "name": "order_id", "value": "", "type": "path", "description": "The ID of the order." } ],
+            "body": { "type": "json", "data": "{ \"note\": \"Order reviewed and released to fulfillment.\" }" }
+          },
+          "docs": "Appends a note to the order's history log."
+        },
+        {
+          "info": { "name": "Move orders", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://app.orderdesk.me/api/v2/move-orders",
+            "body": { "type": "json", "data": "{ \"order_ids\": [\"1001\", \"1002\"], \"folder_id\": 3 }" }
+          },
+          "docs": "Moves orders into a different folder."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Order Items", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List order items", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://app.orderdesk.me/api/v2/orders/:order_id/order-items",
+            "params": [ { "name": "order_id", "value": "", "type": "path", "description": "The ID of the order." } ]
+          },
+          "docs": "Returns all line items for an order."
+        },
+        {
+          "info": { "name": "Add order item", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://app.orderdesk.me/api/v2/orders/:order_id/order-items",
+            "params": [ { "name": "order_id", "value": "", "type": "path", "description": "The ID of the order." } ],
+            "body": { "type": "json", "data": "{ \"name\": \"Mug\", \"code\": \"MUG-001\", \"price\": 9.99, \"quantity\": 2 }" }
+          },
+          "docs": "Adds a line item to an order."
+        },
+        {
+          "info": { "name": "Get order item", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://app.orderdesk.me/api/v2/orders/:order_id/order-items/:item_id",
+            "params": [
+              { "name": "order_id", "value": "", "type": "path", "description": "The ID of the order." },
+              { "name": "item_id", "value": "", "type": "path", "description": "The ID of the order item." }
+            ]
+          },
+          "docs": "Retrieves a single line item."
+        },
+        {
+          "info": { "name": "Update order item", "type": "http" },
+          "http": {
+            "method": "PUT",
+            "url": "https://app.orderdesk.me/api/v2/orders/:order_id/order-items/:item_id",
+            "params": [
+              { "name": "order_id", "value": "", "type": "path", "description": "The ID of the order." },
+              { "name": "item_id", "value": "", "type": "path", "description": "The ID of the order item." }
+            ],
+            "body": { "type": "json", "data": "{ \"quantity\": 3 }" }
+          },
+          "docs": "Updates a line item."
+        },
+        {
+          "info": { "name": "Remove order item", "type": "http" },
+          "http": {
+            "method": "DELETE",
+            "url": "https://app.orderdesk.me/api/v2/orders/:order_id/order-items/:item_id",
+            "params": [
+              { "name": "order_id", "value": "", "type": "path", "description": "The ID of the order." },
+              { "name": "item_id", "value": "", "type": "path", "description": "The ID of the order item." }
+            ]
+          },
+          "docs": "Removes a line item from an order."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Shipments", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List shipments", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://app.orderdesk.me/api/v2/orders/:order_id/shipments",
+            "params": [ { "name": "order_id", "value": "", "type": "path", "description": "The ID of the order." } ]
+          },
+          "docs": "Returns all shipments recorded against an order."
+        },
+        {
+          "info": { "name": "Create shipment", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://app.orderdesk.me/api/v2/orders/:order_id/shipments",
+            "params": [ { "name": "order_id", "value": "", "type": "path", "description": "The ID of the order." } ],
+            "body": { "type": "json", "data": "{ \"tracking_number\": \"1Z999AA10123456784\", \"carrier_code\": \"UPS\", \"shipment_method\": \"Ground\" }" }
+          },
+          "docs": "Records a new shipment with carrier and tracking details."
+        },
+        {
+          "info": { "name": "Get shipment", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://app.orderdesk.me/api/v2/orders/:order_id/shipments/:shipment_id",
+            "params": [
+              { "name": "order_id", "value": "", "type": "path", "description": "The ID of the order." },
+              { "name": "shipment_id", "value": "", "type": "path", "description": "The ID of the shipment." }
+            ]
+          },
+          "docs": "Retrieves a single shipment."
+        },
+        {
+          "info": { "name": "Update shipment", "type": "http" },
+          "http": {
+            "method": "PUT",
+            "url": "https://app.orderdesk.me/api/v2/orders/:order_id/shipments/:shipment_id",
+            "params": [
+              { "name": "order_id", "value": "", "type": "path", "description": "The ID of the order." },
+              { "name": "shipment_id", "value": "", "type": "path", "description": "The ID of the shipment." }
+            ],
+            "body": { "type": "json", "data": "{ \"tracking_number\": \"1Z999AA10123456785\" }" }
+          },
+          "docs": "Updates a shipment."
+        },
+        {
+          "info": { "name": "Delete shipment", "type": "http" },
+          "http": {
+            "method": "DELETE",
+            "url": "https://app.orderdesk.me/api/v2/orders/:order_id/shipments/:shipment_id",
+            "params": [
+              { "name": "order_id", "value": "", "type": "path", "description": "The ID of the order." },
+              { "name": "shipment_id", "value": "", "type": "path", "description": "The ID of the shipment." }
+            ]
+          },
+          "docs": "Deletes a shipment."
+        },
+        {
+          "info": { "name": "Batch add shipments", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://app.orderdesk.me/api/v2/batch-shipments",
+            "body": { "type": "json", "data": "{ \"shipments\": [ { \"order_id\": \"1001\", \"tracking_number\": \"1Z999AA10123456784\", \"carrier_code\": \"UPS\" } ] }" }
+          },
+          "docs": "Adds many shipments across orders in one request."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Inventory Items", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List inventory items", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://app.orderdesk.me/api/v2/inventory-items",
+            "params": [
+              { "name": "limit", "value": "50", "type": "query", "description": "Records to return (default 50, max 500)." },
+              { "name": "offset", "value": "0", "type": "query", "description": "Records to skip." }
+            ]
+          },
+          "docs": "Returns inventory items with pagination and optional search."
+        },
+        {
+          "info": { "name": "Create inventory item", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://app.orderdesk.me/api/v2/inventory-items",
+            "body": { "type": "json", "data": "{ \"name\": \"T-Shirt\", \"code\": \"TS-001\", \"price\": 19.99, \"stock\": 100 }" }
+          },
+          "docs": "Adds a new inventory item."
+        },
+        {
+          "info": { "name": "Get inventory item", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://app.orderdesk.me/api/v2/inventory-items/:id",
+            "params": [ { "name": "id", "value": "", "type": "path", "description": "The ID of the inventory item." } ]
+          },
+          "docs": "Retrieves a single inventory item."
+        },
+        {
+          "info": { "name": "Update inventory item", "type": "http" },
+          "http": {
+            "method": "PUT",
+            "url": "https://app.orderdesk.me/api/v2/inventory-items/:id",
+            "params": [ { "name": "id", "value": "", "type": "path", "description": "The ID of the inventory item." } ],
+            "body": { "type": "json", "data": "{ \"stock\": 80 }" }
+          },
+          "docs": "Updates an inventory item."
+        },
+        {
+          "info": { "name": "Delete inventory item", "type": "http" },
+          "http": {
+            "method": "DELETE",
+            "url": "https://app.orderdesk.me/api/v2/inventory-items/:id",
+            "params": [ { "name": "id", "value": "", "type": "path", "description": "The ID of the inventory item." } ]
+          },
+          "docs": "Removes an inventory item."
+        },
+        {
+          "info": { "name": "Batch update inventory items", "type": "http" },
+          "http": {
+            "method": "PUT",
+            "url": "https://app.orderdesk.me/api/v2/batch-inventory-items",
+            "body": { "type": "json", "data": "{ \"inventory_items\": [ { \"code\": \"TS-001\", \"stock\": 75 }, { \"code\": \"MUG-001\", \"stock\": 40 } ] }" }
+          },
+          "docs": "Creates or updates many inventory items in one request."
+        }
+      ]
+    }
+  ]
+}
