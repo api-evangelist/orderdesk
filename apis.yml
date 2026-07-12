@@ -130,6 +130,10 @@ apis:
     and configuration, and test API connectivity and credentials before running
     order, item, shipment, or inventory operations.
 common:
+- type: DomainSecurity
+  url: security/orderdesk-domain-security.yml
+- type: Authentication
+  url: authentication/orderdesk-authentication.yml
 - type: LinkedIn
   url: https://www.linkedin.com/company/order-desk
 - type: Website

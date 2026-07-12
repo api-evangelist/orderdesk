@@ -1,0 +1,23 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/orderdesk-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: storeId
+  type: apiKey
+  in: header
+  parameter: ORDERDESK-STORE-ID
+  description: The numeric ID of your Order Desk store.
+  sources:
+  - openapi/orderdesk-openapi.yml
+- name: apiKey
+  type: apiKey
+  in: header
+  parameter: ORDERDESK-API-KEY
+  description: The API key for your Order Desk store.
+  sources:
+  - openapi/orderdesk-openapi.yml

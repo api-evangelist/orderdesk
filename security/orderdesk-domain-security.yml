@@ -1,0 +1,32 @@
+generated: '2026-07-11'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: www.orderdesk.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 28 04:16:56 2026 GMT
+  hsts: false
+- host: apidocs.orderdesk.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 28 04:16:44 2026 GMT
+  hsts: false
+- host: app.orderdesk.me
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 18 23:59:59 2026 GMT
+  hsts: false
+domains:
+- domain: orderdesk.com
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: quarantine
+- domain: orderdesk.me
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: quarantine
