@@ -130,6 +130,8 @@ apis:
     and configuration, and test API connectivity and credentials before running
     order, item, shipment, or inventory operations.
 common:
+- type: AgenticAccess
+  url: agentic-access/orderdesk-agentic-access.yml
 - type: DomainSecurity
   url: security/orderdesk-domain-security.yml
 - type: Authentication
