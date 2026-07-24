@@ -1,0 +1,266 @@
+openapi: 3.0.3
+info:
+  title: Order Desk Inventory Items API
+  description: The Order Desk API is a JSON REST API for programmatically managing an Order Desk store - an ecommerce order management and fulfillment routing platform. It exposes Orders, Order Items, Shipments, Inventory Items, and Store settings, plus batch and utility endpoints. Every request must include two headers, ORDERDESK-STORE-ID and ORDERDESK-API-KEY, which are found in the Order Desk dashboard under Store Settings then API. List endpoints support limit (default 50, max 500) and offset pagination and return a status field with pagination metadata. The API is rate limited with a leaky-bucket limiter (~100 requests per rolling 30-second window).
+  version: '2.0'
+  contact:
+    name: Order Desk
+    url: https://www.orderdesk.com
+  license:
+    name: Proprietary
+    url: https://www.orderdesk.com/terms/
+servers:
+- url: https://app.orderdesk.me/api/v2
+  description: Order Desk API v2
+security:
+- storeId: []
+  apiKey: []
+tags:
+- name: Inventory Items
+  description: Maintain the store's inventory catalog.
+paths:
+  /inventory-items:
+    get:
+      operationId: listInventoryItems
+      tags:
+      - Inventory Items
+      summary: List inventory items
+      description: Returns inventory items with limit/offset pagination and optional search.
+      parameters:
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Offset'
+      - name: code
+        in: query
+        schema:
+          type: string
+        description: Filter by inventory item code.
+      - name: search
+        in: query
+        schema:
+          type: string
+        description: Free-text search across inventory items.
+      responses:
+        '200':
+          description: A list of inventory items.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  total_records:
+                    type: integer
+                  records_returned:
+                    type: integer
+                  offset:
+                    type: integer
+                  limit:
+                    type: integer
+                  inventory_items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/InventoryItem'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+    post:
+      operationId: createInventoryItem
+      tags:
+      - Inventory Items
+      summary: Create an inventory item
+      description: Adds a new item to the inventory catalog.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InventoryItem'
+      responses:
+        '200':
+          description: The created inventory item.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /inventory-items/{id}:
+    parameters:
+    - $ref: '#/components/parameters/InventoryId'
+    get:
+      operationId: getInventoryItem
+      tags:
+      - Inventory Items
+      summary: Get an inventory item
+      description: Retrieves a single inventory item by ID.
+      responses:
+        '200':
+          description: The requested inventory item.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  inventory_item:
+                    $ref: '#/components/schemas/InventoryItem'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    put:
+      operationId: updateInventoryItem
+      tags:
+      - Inventory Items
+      summary: Update an inventory item
+      description: Updates an existing inventory item.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InventoryItem'
+      responses:
+        '200':
+          description: The updated inventory item.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    delete:
+      operationId: deleteInventoryItem
+      tags:
+      - Inventory Items
+      summary: Delete an inventory item
+      description: Removes an item from the inventory catalog.
+      responses:
+        '200':
+          description: Deletion result.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /batch-inventory-items:
+    put:
+      operationId: batchInventoryItems
+      tags:
+      - Inventory Items
+      summary: Update multiple inventory items
+      description: Creates or updates many inventory items in a single request.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                inventory_items:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/InventoryItem'
+      responses:
+        '200':
+          description: Batch result.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  parameters:
+    InventoryId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the inventory item.
+    Limit:
+      name: limit
+      in: query
+      schema:
+        type: integer
+        default: 50
+        maximum: 500
+      description: Number of records to return (default 50, max 500).
+    Offset:
+      name: offset
+      in: query
+      schema:
+        type: integer
+        default: 0
+      description: Number of records to skip.
+  responses:
+    Unauthorized:
+      description: Missing or invalid store ID / API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/StatusResponse'
+    RateLimited:
+      description: Rate limit exceeded. Retry after the number of seconds in X-Retry-After.
+      headers:
+        X-Retry-After:
+          schema:
+            type: integer
+          description: Seconds to wait before retrying.
+        X-Tokens-Remaining:
+          schema:
+            type: integer
+          description: Remaining requests in the leaky-bucket window.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/StatusResponse'
+  schemas:
+    StatusResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          description: success or error.
+        message:
+          type: string
+        errors:
+          type: array
+          items:
+            type: string
+    InventoryItem:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        code:
+          type: string
+        price:
+          type: number
+        cost:
+          type: number
+        weight:
+          type: number
+        stock:
+          type: integer
+        location:
+          type: string
+        metadata:
+          type: object
+          additionalProperties: true
+  securitySchemes:
+    storeId:
+      type: apiKey
+      in: header
+      name: ORDERDESK-STORE-ID
+      description: The numeric ID of your Order Desk store.
+    apiKey:
+      type: apiKey
+      in: header
+      name: ORDERDESK-API-KEY
+      description: The API key for your Order Desk store.

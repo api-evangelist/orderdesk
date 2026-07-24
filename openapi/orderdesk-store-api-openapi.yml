@@ -1,0 +1,106 @@
+openapi: 3.0.3
+info:
+  title: Order Desk Inventory Items Store API
+  description: The Order Desk API is a JSON REST API for programmatically managing an Order Desk store - an ecommerce order management and fulfillment routing platform. It exposes Orders, Order Items, Shipments, Inventory Items, and Store settings, plus batch and utility endpoints. Every request must include two headers, ORDERDESK-STORE-ID and ORDERDESK-API-KEY, which are found in the Order Desk dashboard under Store Settings then API. List endpoints support limit (default 50, max 500) and offset pagination and return a status field with pagination metadata. The API is rate limited with a leaky-bucket limiter (~100 requests per rolling 30-second window).
+  version: '2.0'
+  contact:
+    name: Order Desk
+    url: https://www.orderdesk.com
+  license:
+    name: Proprietary
+    url: https://www.orderdesk.com/terms/
+servers:
+- url: https://app.orderdesk.me/api/v2
+  description: Order Desk API v2
+security:
+- storeId: []
+  apiKey: []
+tags:
+- name: Store
+  description: Store settings, folder structure, and connectivity test.
+paths:
+  /test:
+    get:
+      operationId: testConnection
+      tags:
+      - Store
+      summary: Test API connection
+      description: Verifies that the store ID and API key are valid and the API is reachable.
+      responses:
+        '200':
+          description: Connection succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /store:
+    get:
+      operationId: getStore
+      tags:
+      - Store
+      summary: Retrieve store settings
+      description: Returns the store's settings and folder structure.
+      responses:
+        '200':
+          description: Store settings and folders.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  store:
+                    $ref: '#/components/schemas/Store'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    Store:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        folders:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              name:
+                type: string
+    StatusResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          description: success or error.
+        message:
+          type: string
+        errors:
+          type: array
+          items:
+            type: string
+  responses:
+    Unauthorized:
+      description: Missing or invalid store ID / API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/StatusResponse'
+  securitySchemes:
+    storeId:
+      type: apiKey
+      in: header
+      name: ORDERDESK-STORE-ID
+      description: The numeric ID of your Order Desk store.
+    apiKey:
+      type: apiKey
+      in: header
+      name: ORDERDESK-API-KEY
+      description: The API key for your Order Desk store.

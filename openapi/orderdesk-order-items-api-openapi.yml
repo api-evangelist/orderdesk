@@ -1,0 +1,195 @@
+openapi: 3.0.3
+info:
+  title: Order Desk Inventory Items Order Items API
+  description: The Order Desk API is a JSON REST API for programmatically managing an Order Desk store - an ecommerce order management and fulfillment routing platform. It exposes Orders, Order Items, Shipments, Inventory Items, and Store settings, plus batch and utility endpoints. Every request must include two headers, ORDERDESK-STORE-ID and ORDERDESK-API-KEY, which are found in the Order Desk dashboard under Store Settings then API. List endpoints support limit (default 50, max 500) and offset pagination and return a status field with pagination metadata. The API is rate limited with a leaky-bucket limiter (~100 requests per rolling 30-second window).
+  version: '2.0'
+  contact:
+    name: Order Desk
+    url: https://www.orderdesk.com
+  license:
+    name: Proprietary
+    url: https://www.orderdesk.com/terms/
+servers:
+- url: https://app.orderdesk.me/api/v2
+  description: Order Desk API v2
+security:
+- storeId: []
+  apiKey: []
+tags:
+- name: Order Items
+  description: Manage line items within an order.
+paths:
+  /orders/{order_id}/order-items:
+    parameters:
+    - $ref: '#/components/parameters/OrderId'
+    get:
+      operationId: listOrderItems
+      tags:
+      - Order Items
+      summary: List order items
+      description: Returns all line items for an order.
+      responses:
+        '200':
+          description: A list of order items.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  order_items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/OrderItem'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: addOrderItem
+      tags:
+      - Order Items
+      summary: Add an order item
+      description: Adds a new line item to an order.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderItem'
+      responses:
+        '200':
+          description: The added order item.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /orders/{order_id}/order-items/{item_id}:
+    parameters:
+    - $ref: '#/components/parameters/OrderId'
+    - $ref: '#/components/parameters/ItemId'
+    get:
+      operationId: getOrderItem
+      tags:
+      - Order Items
+      summary: Get an order item
+      description: Retrieves a single line item from an order.
+      responses:
+        '200':
+          description: The requested order item.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  order_item:
+                    $ref: '#/components/schemas/OrderItem'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    put:
+      operationId: updateOrderItem
+      tags:
+      - Order Items
+      summary: Update an order item
+      description: Updates an existing line item.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderItem'
+      responses:
+        '200':
+          description: The updated order item.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    delete:
+      operationId: deleteOrderItem
+      tags:
+      - Order Items
+      summary: Remove an order item
+      description: Removes a line item from an order.
+      responses:
+        '200':
+          description: Deletion result.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  parameters:
+    OrderId:
+      name: order_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the order.
+    ItemId:
+      name: item_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the order item.
+  responses:
+    Unauthorized:
+      description: Missing or invalid store ID / API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/StatusResponse'
+  schemas:
+    StatusResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          description: success or error.
+        message:
+          type: string
+        errors:
+          type: array
+          items:
+            type: string
+    OrderItem:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        code:
+          type: string
+        price:
+          type: number
+        quantity:
+          type: integer
+        weight:
+          type: number
+        variation_list:
+          type: object
+          additionalProperties: true
+        metadata:
+          type: object
+          additionalProperties: true
+  securitySchemes:
+    storeId:
+      type: apiKey
+      in: header
+      name: ORDERDESK-STORE-ID
+      description: The numeric ID of your Order Desk store.
+    apiKey:
+      type: apiKey
+      in: header
+      name: ORDERDESK-API-KEY
+      description: The API key for your Order Desk store.

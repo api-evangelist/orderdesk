@@ -1,0 +1,368 @@
+openapi: 3.0.3
+info:
+  title: Order Desk Inventory Items Orders API
+  description: The Order Desk API is a JSON REST API for programmatically managing an Order Desk store - an ecommerce order management and fulfillment routing platform. It exposes Orders, Order Items, Shipments, Inventory Items, and Store settings, plus batch and utility endpoints. Every request must include two headers, ORDERDESK-STORE-ID and ORDERDESK-API-KEY, which are found in the Order Desk dashboard under Store Settings then API. List endpoints support limit (default 50, max 500) and offset pagination and return a status field with pagination metadata. The API is rate limited with a leaky-bucket limiter (~100 requests per rolling 30-second window).
+  version: '2.0'
+  contact:
+    name: Order Desk
+    url: https://www.orderdesk.com
+  license:
+    name: Proprietary
+    url: https://www.orderdesk.com/terms/
+servers:
+- url: https://app.orderdesk.me/api/v2
+  description: Order Desk API v2
+security:
+- storeId: []
+  apiKey: []
+tags:
+- name: Orders
+  description: Create, retrieve, search, update, and delete orders.
+paths:
+  /orders:
+    get:
+      operationId: listOrders
+      tags:
+      - Orders
+      summary: Search orders
+      description: Retrieves multiple orders, optionally filtered by folder, status, source, date range, email, or search terms, with limit/offset pagination.
+      parameters:
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Offset'
+      - name: folder_id
+        in: query
+        schema:
+          type: integer
+        description: Restrict results to a specific folder.
+      - name: source_name
+        in: query
+        schema:
+          type: string
+        description: Filter by the order source (e.g. Shopify, Amazon).
+      - name: email
+        in: query
+        schema:
+          type: string
+        description: Filter by customer email address.
+      - name: search_start_date
+        in: query
+        schema:
+          type: string
+        description: Start of a date range filter.
+      - name: search_end_date
+        in: query
+        schema:
+          type: string
+        description: End of a date range filter.
+      responses:
+        '200':
+          description: A list of orders.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  total_records:
+                    type: integer
+                  records_returned:
+                    type: integer
+                  offset:
+                    type: integer
+                  limit:
+                    type: integer
+                  orders:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Order'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+    post:
+      operationId: createOrder
+      tags:
+      - Orders
+      summary: Create an order
+      description: Creates a new order in the store.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Order'
+      responses:
+        '200':
+          description: The created order.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /orders/{order_id}:
+    parameters:
+    - $ref: '#/components/parameters/OrderId'
+    get:
+      operationId: getOrder
+      tags:
+      - Orders
+      summary: Get a single order
+      description: Retrieves the details of a single order by its ID.
+      responses:
+        '200':
+          description: The requested order.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    put:
+      operationId: updateOrder
+      tags:
+      - Orders
+      summary: Update an order
+      description: Updates an existing order. Only supplied fields are changed.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Order'
+      responses:
+        '200':
+          description: The updated order.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    delete:
+      operationId: deleteOrder
+      tags:
+      - Orders
+      summary: Delete an order
+      description: Permanently deletes an order.
+      responses:
+        '200':
+          description: Deletion result.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /orders/{order_id}/order-history:
+    parameters:
+    - $ref: '#/components/parameters/OrderId'
+    post:
+      operationId: addOrderHistory
+      tags:
+      - Orders
+      summary: Add an order history note
+      description: Appends a note to the order's history log.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                note:
+                  type: string
+      responses:
+        '200':
+          description: History note added.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /move-orders:
+    post:
+      operationId: moveOrders
+      tags:
+      - Orders
+      summary: Move orders to a folder
+      description: Moves one or more orders into a different folder.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                order_ids:
+                  type: array
+                  items:
+                    type: string
+                folder_id:
+                  type: integer
+      responses:
+        '200':
+          description: Move result.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    Shipment:
+      type: object
+      properties:
+        id:
+          type: string
+        tracking_number:
+          type: string
+        carrier_code:
+          type: string
+        shipment_method:
+          type: string
+        cost:
+          type: number
+        weight:
+          type: number
+        ship_date:
+          type: string
+    OrderResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        order:
+          $ref: '#/components/schemas/Order'
+    StatusResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          description: success or error.
+        message:
+          type: string
+        errors:
+          type: array
+          items:
+            type: string
+    Order:
+      type: object
+      properties:
+        id:
+          type: string
+        source_id:
+          type: string
+        source_name:
+          type: string
+        email:
+          type: string
+        order_total:
+          type: number
+        folder_id:
+          type: integer
+        customer_first_name:
+          type: string
+        customer_last_name:
+          type: string
+        shipping:
+          type: object
+          additionalProperties: true
+        customer:
+          type: object
+          additionalProperties: true
+        order_items:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderItem'
+        shipments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Shipment'
+        order_metadata:
+          type: object
+          additionalProperties: true
+        date_added:
+          type: string
+        date_updated:
+          type: string
+    OrderItem:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        code:
+          type: string
+        price:
+          type: number
+        quantity:
+          type: integer
+        weight:
+          type: number
+        variation_list:
+          type: object
+          additionalProperties: true
+        metadata:
+          type: object
+          additionalProperties: true
+  parameters:
+    OrderId:
+      name: order_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the order.
+    Limit:
+      name: limit
+      in: query
+      schema:
+        type: integer
+        default: 50
+        maximum: 500
+      description: Number of records to return (default 50, max 500).
+    Offset:
+      name: offset
+      in: query
+      schema:
+        type: integer
+        default: 0
+      description: Number of records to skip.
+  responses:
+    Unauthorized:
+      description: Missing or invalid store ID / API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/StatusResponse'
+    RateLimited:
+      description: Rate limit exceeded. Retry after the number of seconds in X-Retry-After.
+      headers:
+        X-Retry-After:
+          schema:
+            type: integer
+          description: Seconds to wait before retrying.
+        X-Tokens-Remaining:
+          schema:
+            type: integer
+          description: Remaining requests in the leaky-bucket window.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/StatusResponse'
+  securitySchemes:
+    storeId:
+      type: apiKey
+      in: header
+      name: ORDERDESK-STORE-ID
+      description: The numeric ID of your Order Desk store.
+    apiKey:
+      type: apiKey
+      in: header
+      name: ORDERDESK-API-KEY
+      description: The API key for your Order Desk store.
