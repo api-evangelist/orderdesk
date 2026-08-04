@@ -1,0 +1,22 @@
+{
+  "provider": "orderdesk",
+  "sources": [
+    "orderdesk-inventory-items-api-openapi.yml",
+    "orderdesk-order-items-api-openapi.yml",
+    "orderdesk-orders-api-openapi.yml",
+    "orderdesk-shipments-api-openapi.yml",
+    "orderdesk-store-api-openapi.yml"
+  ],
+  "outputs": [
+    "orderdesk-inventory-items-api-openapi.yml",
+    "orderdesk-order-items-api-openapi.yml",
+    "orderdesk-orders-api-openapi.yml",
+    "orderdesk-shipments-api-openapi.yml",
+    "orderdesk-store-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
