@@ -1,0 +1,1308 @@
+{
+  "item": [
+    {
+      "id": "8d9d53f4-0880-41c4-802b-8f9046278ac0",
+      "name": "Orders",
+      "description": {
+        "content": "Create, retrieve, search, update, and delete orders.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "454001ce-4a34-4295-9f14-e28c23be54e5",
+          "name": "Search orders",
+          "request": {
+            "name": "Search orders",
+            "description": {
+              "content": "Retrieves multiple orders, optionally filtered by folder, status, source, date range, email, or search terms, with limit/offset pagination.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "50",
+                  "description": "Number of records to return (default 50, max 500)."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Number of records to skip."
+                },
+                {
+                  "disabled": false,
+                  "key": "folder_id",
+                  "value": "<integer>",
+                  "description": "Restrict results to a specific folder."
+                },
+                {
+                  "disabled": false,
+                  "key": "source_name",
+                  "value": "<string>",
+                  "description": "Filter by the order source (e.g. Shopify, Amazon)."
+                },
+                {
+                  "disabled": false,
+                  "key": "email",
+                  "value": "<string>",
+                  "description": "Filter by customer email address."
+                },
+                {
+                  "disabled": false,
+                  "key": "search_start_date",
+                  "value": "<string>",
+                  "description": "Start of a date range filter."
+                },
+                {
+                  "disabled": false,
+                  "key": "search_end_date",
+                  "value": "<string>",
+                  "description": "End of a date range filter."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5b228755-93ac-4a65-965d-561c0bc90da6",
+              "name": "A list of orders.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "folder_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "source_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search_start_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search_end_date",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ORDERDESK-STORE-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"total_records\": 3720,\n  \"records_returned\": 9054,\n  \"offset\": 1968,\n  \"limit\": 532,\n  \"orders\": [\n    {\n      \"id\": \"string\",\n      \"source_id\": \"string\",\n      \"source_name\": \"string\",\n      \"email\": \"string\",\n      \"order_total\": 4489.698702346449,\n      \"folder_id\": 6743,\n      \"customer_first_name\": \"string\",\n      \"customer_last_name\": \"string\",\n      \"shipping\": {\n        \"key_0\": 6077,\n        \"key_1\": true\n      },\n      \"customer\": {\n        \"key_0\": false,\n        \"key_1\": false,\n        \"key_2\": 7735,\n        \"key_3\": true,\n        \"key_4\": 410.55462014646935\n      },\n      \"order_items\": [\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"code\": \"string\",\n          \"price\": 9656.924215755766,\n          \"quantity\": 1090,\n          \"weight\": 6760.0879174306565,\n          \"variation_list\": {\n            \"key_0\": 3199\n          },\n          \"metadata\": {\n            \"key_0\": 8005,\n            \"key_1\": 2875\n          }\n        },\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"code\": \"string\",\n          \"price\": 5277.711760837485,\n          \"quantity\": 7370,\n          \"weight\": 1836.9091748379597,\n          \"variation_list\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\",\n            \"key_2\": 5161.873880621245,\n            \"key_3\": \"string\"\n          },\n          \"metadata\": {\n            \"key_0\": \"string\"\n          }\n        }\n      ],\n      \"shipments\": [\n        {\n          \"id\": \"string\",\n          \"tracking_number\": \"string\",\n          \"carrier_code\": \"string\",\n          \"shipment_method\": \"string\",\n          \"cost\": 4955.29301127854,\n          \"weight\": 2233.5961836058327,\n          \"ship_date\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"tracking_number\": \"string\",\n          \"carrier_code\": \"string\",\n          \"shipment_method\": \"string\",\n          \"cost\": 6711.980915806473,\n          \"weight\": 3359.5964556622994,\n          \"ship_date\": \"string\"\n        }\n      ],\n      \"order_metadata\": {\n        \"key_0\": 7460\n      },\n      \"date_added\": \"string\",\n      \"date_updated\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"source_id\": \"string\",\n      \"source_name\": \"string\",\n      \"email\": \"string\",\n      \"order_total\": 7366.324046024494,\n      \"folder_id\": 5932,\n      \"customer_first_name\": \"string\",\n      \"customer_last_name\": \"string\",\n      \"shipping\": {\n        \"key_0\": 2906.3098262353483,\n        \"key_1\": 8923.938860878881,\n        \"key_2\": false\n      },\n      \"customer\": {\n        \"key_0\": 5491.511871902142,\n        \"key_1\": 2761.4496053008575,\n        \"key_2\": \"string\"\n      },\n      \"order_items\": [\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"code\": \"string\",\n          \"price\": 3529.566877622824,\n          \"quantity\": 1918,\n          \"weight\": 3494.163623869092,\n          \"variation_list\": {\n            \"key_0\": \"string\"\n          },\n          \"metadata\": {\n            \"key_0\": \"string\"\n          }\n        },\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"code\": \"string\",\n          \"price\": 1579.904366732885,\n          \"quantity\": 3281,\n          \"weight\": 6934.925667587844,\n          \"variation_list\": {\n            \"key_0\": true,\n            \"key_1\": 6126.603923719474,\n            \"key_2\": \"string\"\n          },\n          \"metadata\": {\n            \"key_0\": false\n          }\n        }\n      ],\n      \"shipments\": [\n        {\n          \"id\": \"string\",\n          \"tracking_number\": \"string\",\n          \"carrier_code\": \"string\",\n          \"shipment_method\": \"string\",\n          \"cost\": 4509.65724073619,\n          \"weight\": 2869.654919220428,\n          \"ship_date\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"tracking_number\": \"string\",\n          \"carrier_code\": \"string\",\n          \"shipment_method\": \"string\",\n          \"cost\": 6618.909868307324,\n          \"weight\": 5831.224576348894,\n          \"ship_date\": \"string\"\n        }\n      ],\n      \"order_metadata\": {\n        \"key_0\": 2469,\n        \"key_1\": true\n      },\n      \"date_added\": \"string\",\n      \"date_updated\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9d4a5d9a-0c2e-4d52-b2fa-ec0a1048d68a",
+              "name": "Missing or invalid store ID / API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "folder_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "source_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search_start_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search_end_date",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ORDERDESK-STORE-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"message\": \"string\",\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "89d5a426-99cf-435d-a843-4fff47d7342e",
+              "name": "Rate limit exceeded. Retry after the number of seconds in X-Retry-After.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "folder_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "source_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search_start_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search_end_date",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ORDERDESK-STORE-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Seconds to wait before retrying.",
+                  "key": "X-Retry-After",
+                  "value": "6254"
+                },
+                {
+                  "disabled": false,
+                  "description": "Remaining requests in the leaky-bucket window.",
+                  "key": "X-Tokens-Remaining",
+                  "value": "6254"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"message\": \"string\",\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "45d2cf68-6752-4f11-9c07-a5d4c78950ad",
+          "name": "Create an order",
+          "request": {
+            "name": "Create an order",
+            "description": {
+              "content": "Creates a new order in the store.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"source_id\": \"<string>\",\n  \"source_name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"order_total\": \"<number>\",\n  \"folder_id\": \"<integer>\",\n  \"customer_first_name\": \"<string>\",\n  \"customer_last_name\": \"<string>\",\n  \"shipping\": {\n    \"key_0\": 8349.790074289323,\n    \"key_1\": 3984.730211645211\n  },\n  \"customer\": {\n    \"key_0\": \"string\"\n  },\n  \"order_items\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"code\": \"<string>\",\n      \"price\": \"<number>\",\n      \"quantity\": \"<integer>\",\n      \"weight\": \"<number>\",\n      \"variation_list\": {\n        \"key_0\": \"string\",\n        \"key_1\": 7916\n      },\n      \"metadata\": {\n        \"key_0\": 5223\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"code\": \"<string>\",\n      \"price\": \"<number>\",\n      \"quantity\": \"<integer>\",\n      \"weight\": \"<number>\",\n      \"variation_list\": {\n        \"key_0\": 3742\n      },\n      \"metadata\": {\n        \"key_0\": true,\n        \"key_1\": \"string\"\n      }\n    }\n  ],\n  \"shipments\": [\n    {\n      \"id\": \"<string>\",\n      \"tracking_number\": \"<string>\",\n      \"carrier_code\": \"<string>\",\n      \"shipment_method\": \"<string>\",\n      \"cost\": \"<number>\",\n      \"weight\": \"<number>\",\n      \"ship_date\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"tracking_number\": \"<string>\",\n      \"carrier_code\": \"<string>\",\n      \"shipment_method\": \"<string>\",\n      \"cost\": \"<number>\",\n      \"weight\": \"<number>\",\n      \"ship_date\": \"<string>\"\n    }\n  ],\n  \"order_metadata\": {\n    \"key_0\": true\n  },\n  \"date_added\": \"<string>\",\n  \"date_updated\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8beeb4d4-411e-4380-add2-2af7c09dd2ea",
+              "name": "The created order.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ORDERDESK-STORE-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"source_id\": \"<string>\",\n  \"source_name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"order_total\": \"<number>\",\n  \"folder_id\": \"<integer>\",\n  \"customer_first_name\": \"<string>\",\n  \"customer_last_name\": \"<string>\",\n  \"shipping\": {\n    \"key_0\": 5580.86025346356,\n    \"key_1\": false\n  },\n  \"customer\": {\n    \"key_0\": \"string\"\n  },\n  \"order_items\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"code\": \"<string>\",\n      \"price\": \"<number>\",\n      \"quantity\": \"<integer>\",\n      \"weight\": \"<number>\",\n      \"variation_list\": {\n        \"key_0\": 7070.599242575865,\n        \"key_1\": 9110\n      },\n      \"metadata\": {\n        \"key_0\": true,\n        \"key_1\": 2685.9850024913744,\n        \"key_2\": 4046.2342540160744\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"code\": \"<string>\",\n      \"price\": \"<number>\",\n      \"quantity\": \"<integer>\",\n      \"weight\": \"<number>\",\n      \"variation_list\": {\n        \"key_0\": 4509.335853364201,\n        \"key_1\": false,\n        \"key_2\": 6124.035001059239\n      },\n      \"metadata\": {\n        \"key_0\": true\n      }\n    }\n  ],\n  \"shipments\": [\n    {\n      \"id\": \"<string>\",\n      \"tracking_number\": \"<string>\",\n      \"carrier_code\": \"<string>\",\n      \"shipment_method\": \"<string>\",\n      \"cost\": \"<number>\",\n      \"weight\": \"<number>\",\n      \"ship_date\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"tracking_number\": \"<string>\",\n      \"carrier_code\": \"<string>\",\n      \"shipment_method\": \"<string>\",\n      \"cost\": \"<number>\",\n      \"weight\": \"<number>\",\n      \"ship_date\": \"<string>\"\n    }\n  ],\n  \"order_metadata\": {\n    \"key_0\": 3482,\n    \"key_1\": \"string\"\n  },\n  \"date_added\": \"<string>\",\n  \"date_updated\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"order\": {\n    \"id\": \"<string>\",\n    \"source_id\": \"<string>\",\n    \"source_name\": \"<string>\",\n    \"email\": \"<string>\",\n    \"order_total\": \"<number>\",\n    \"folder_id\": \"<integer>\",\n    \"customer_first_name\": \"<string>\",\n    \"customer_last_name\": \"<string>\",\n    \"shipping\": {\n      \"key_0\": true,\n      \"key_1\": false\n    },\n    \"customer\": {\n      \"key_0\": true,\n      \"key_1\": 3964\n    },\n    \"order_items\": [\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"code\": \"<string>\",\n        \"price\": \"<number>\",\n        \"quantity\": \"<integer>\",\n        \"weight\": \"<number>\",\n        \"variation_list\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        },\n        \"metadata\": {\n          \"key_0\": \"string\"\n        }\n      },\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"code\": \"<string>\",\n        \"price\": \"<number>\",\n        \"quantity\": \"<integer>\",\n        \"weight\": \"<number>\",\n        \"variation_list\": {\n          \"key_0\": \"string\",\n          \"key_1\": 8891.310425830192\n        },\n        \"metadata\": {\n          \"key_0\": 970\n        }\n      }\n    ],\n    \"shipments\": [\n      {\n        \"id\": \"<string>\",\n        \"tracking_number\": \"<string>\",\n        \"carrier_code\": \"<string>\",\n        \"shipment_method\": \"<string>\",\n        \"cost\": \"<number>\",\n        \"weight\": \"<number>\",\n        \"ship_date\": \"<string>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"tracking_number\": \"<string>\",\n        \"carrier_code\": \"<string>\",\n        \"shipment_method\": \"<string>\",\n        \"cost\": \"<number>\",\n        \"weight\": \"<number>\",\n        \"ship_date\": \"<string>\"\n      }\n    ],\n    \"order_metadata\": {\n      \"key_0\": true\n    },\n    \"date_added\": \"<string>\",\n    \"date_updated\": \"<string>\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "071fcd93-2150-4931-ae8e-9eed88eef56e",
+              "name": "Missing or invalid store ID / API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ORDERDESK-STORE-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"source_id\": \"<string>\",\n  \"source_name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"order_total\": \"<number>\",\n  \"folder_id\": \"<integer>\",\n  \"customer_first_name\": \"<string>\",\n  \"customer_last_name\": \"<string>\",\n  \"shipping\": {\n    \"key_0\": 5580.86025346356,\n    \"key_1\": false\n  },\n  \"customer\": {\n    \"key_0\": \"string\"\n  },\n  \"order_items\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"code\": \"<string>\",\n      \"price\": \"<number>\",\n      \"quantity\": \"<integer>\",\n      \"weight\": \"<number>\",\n      \"variation_list\": {\n        \"key_0\": 7070.599242575865,\n        \"key_1\": 9110\n      },\n      \"metadata\": {\n        \"key_0\": true,\n        \"key_1\": 2685.9850024913744,\n        \"key_2\": 4046.2342540160744\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"code\": \"<string>\",\n      \"price\": \"<number>\",\n      \"quantity\": \"<integer>\",\n      \"weight\": \"<number>\",\n      \"variation_list\": {\n        \"key_0\": 4509.335853364201,\n        \"key_1\": false,\n        \"key_2\": 6124.035001059239\n      },\n      \"metadata\": {\n        \"key_0\": true\n      }\n    }\n  ],\n  \"shipments\": [\n    {\n      \"id\": \"<string>\",\n      \"tracking_number\": \"<string>\",\n      \"carrier_code\": \"<string>\",\n      \"shipment_method\": \"<string>\",\n      \"cost\": \"<number>\",\n      \"weight\": \"<number>\",\n      \"ship_date\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"tracking_number\": \"<string>\",\n      \"carrier_code\": \"<string>\",\n      \"shipment_method\": \"<string>\",\n      \"cost\": \"<number>\",\n      \"weight\": \"<number>\",\n      \"ship_date\": \"<string>\"\n    }\n  ],\n  \"order_metadata\": {\n    \"key_0\": 3482,\n    \"key_1\": \"string\"\n  },\n  \"date_added\": \"<string>\",\n  \"date_updated\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"message\": \"string\",\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1f783a77-7c31-46e4-a701-69c5a7455906",
+          "name": "Get a single order",
+          "request": {
+            "name": "Get a single order",
+            "description": {
+              "content": "Retrieves the details of a single order by its ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orders",
+                ":order_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "order_id",
+                  "description": "(Required) The ID of the order."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3dd760d5-a0d0-49b3-ba72-12ca74ae7865",
+              "name": "The requested order.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":order_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "order_id",
+                      "description": "(Required) The ID of the order."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ORDERDESK-STORE-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"order\": {\n    \"id\": \"<string>\",\n    \"source_id\": \"<string>\",\n    \"source_name\": \"<string>\",\n    \"email\": \"<string>\",\n    \"order_total\": \"<number>\",\n    \"folder_id\": \"<integer>\",\n    \"customer_first_name\": \"<string>\",\n    \"customer_last_name\": \"<string>\",\n    \"shipping\": {\n      \"key_0\": true,\n      \"key_1\": false\n    },\n    \"customer\": {\n      \"key_0\": true,\n      \"key_1\": 3964\n    },\n    \"order_items\": [\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"code\": \"<string>\",\n        \"price\": \"<number>\",\n        \"quantity\": \"<integer>\",\n        \"weight\": \"<number>\",\n        \"variation_list\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        },\n        \"metadata\": {\n          \"key_0\": \"string\"\n        }\n      },\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"code\": \"<string>\",\n        \"price\": \"<number>\",\n        \"quantity\": \"<integer>\",\n        \"weight\": \"<number>\",\n        \"variation_list\": {\n          \"key_0\": \"string\",\n          \"key_1\": 8891.310425830192\n        },\n        \"metadata\": {\n          \"key_0\": 970\n        }\n      }\n    ],\n    \"shipments\": [\n      {\n        \"id\": \"<string>\",\n        \"tracking_number\": \"<string>\",\n        \"carrier_code\": \"<string>\",\n        \"shipment_method\": \"<string>\",\n        \"cost\": \"<number>\",\n        \"weight\": \"<number>\",\n        \"ship_date\": \"<string>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"tracking_number\": \"<string>\",\n        \"carrier_code\": \"<string>\",\n        \"shipment_method\": \"<string>\",\n        \"cost\": \"<number>\",\n        \"weight\": \"<number>\",\n        \"ship_date\": \"<string>\"\n      }\n    ],\n    \"order_metadata\": {\n      \"key_0\": true\n    },\n    \"date_added\": \"<string>\",\n    \"date_updated\": \"<string>\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "699c687f-5914-4f4e-b27f-3bf4955b83de",
+              "name": "Missing or invalid store ID / API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":order_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "order_id",
+                      "description": "(Required) The ID of the order."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ORDERDESK-STORE-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"message\": \"string\",\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1ebef0e5-f113-49be-b9e6-900ca50b6b20",
+          "name": "Update an order",
+          "request": {
+            "name": "Update an order",
+            "description": {
+              "content": "Updates an existing order. Only supplied fields are changed.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orders",
+                ":order_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "order_id",
+                  "description": "(Required) The ID of the order."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"source_id\": \"<string>\",\n  \"source_name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"order_total\": \"<number>\",\n  \"folder_id\": \"<integer>\",\n  \"customer_first_name\": \"<string>\",\n  \"customer_last_name\": \"<string>\",\n  \"shipping\": {\n    \"key_0\": 8349.790074289323,\n    \"key_1\": 3984.730211645211\n  },\n  \"customer\": {\n    \"key_0\": \"string\"\n  },\n  \"order_items\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"code\": \"<string>\",\n      \"price\": \"<number>\",\n      \"quantity\": \"<integer>\",\n      \"weight\": \"<number>\",\n      \"variation_list\": {\n        \"key_0\": \"string\",\n        \"key_1\": 7916\n      },\n      \"metadata\": {\n        \"key_0\": 5223\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"code\": \"<string>\",\n      \"price\": \"<number>\",\n      \"quantity\": \"<integer>\",\n      \"weight\": \"<number>\",\n      \"variation_list\": {\n        \"key_0\": 3742\n      },\n      \"metadata\": {\n        \"key_0\": true,\n        \"key_1\": \"string\"\n      }\n    }\n  ],\n  \"shipments\": [\n    {\n      \"id\": \"<string>\",\n      \"tracking_number\": \"<string>\",\n      \"carrier_code\": \"<string>\",\n      \"shipment_method\": \"<string>\",\n      \"cost\": \"<number>\",\n      \"weight\": \"<number>\",\n      \"ship_date\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"tracking_number\": \"<string>\",\n      \"carrier_code\": \"<string>\",\n      \"shipment_method\": \"<string>\",\n      \"cost\": \"<number>\",\n      \"weight\": \"<number>\",\n      \"ship_date\": \"<string>\"\n    }\n  ],\n  \"order_metadata\": {\n    \"key_0\": true\n  },\n  \"date_added\": \"<string>\",\n  \"date_updated\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f3c80efa-a301-4501-922a-d606692b8a0a",
+              "name": "The updated order.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":order_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "order_id",
+                      "description": "(Required) The ID of the order."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ORDERDESK-STORE-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"source_id\": \"<string>\",\n  \"source_name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"order_total\": \"<number>\",\n  \"folder_id\": \"<integer>\",\n  \"customer_first_name\": \"<string>\",\n  \"customer_last_name\": \"<string>\",\n  \"shipping\": {\n    \"key_0\": 5580.86025346356,\n    \"key_1\": false\n  },\n  \"customer\": {\n    \"key_0\": \"string\"\n  },\n  \"order_items\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"code\": \"<string>\",\n      \"price\": \"<number>\",\n      \"quantity\": \"<integer>\",\n      \"weight\": \"<number>\",\n      \"variation_list\": {\n        \"key_0\": 7070.599242575865,\n        \"key_1\": 9110\n      },\n      \"metadata\": {\n        \"key_0\": true,\n        \"key_1\": 2685.9850024913744,\n        \"key_2\": 4046.2342540160744\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"code\": \"<string>\",\n      \"price\": \"<number>\",\n      \"quantity\": \"<integer>\",\n      \"weight\": \"<number>\",\n      \"variation_list\": {\n        \"key_0\": 4509.335853364201,\n        \"key_1\": false,\n        \"key_2\": 6124.035001059239\n      },\n      \"metadata\": {\n        \"key_0\": true\n      }\n    }\n  ],\n  \"shipments\": [\n    {\n      \"id\": \"<string>\",\n      \"tracking_number\": \"<string>\",\n      \"carrier_code\": \"<string>\",\n      \"shipment_method\": \"<string>\",\n      \"cost\": \"<number>\",\n      \"weight\": \"<number>\",\n      \"ship_date\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"tracking_number\": \"<string>\",\n      \"carrier_code\": \"<string>\",\n      \"shipment_method\": \"<string>\",\n      \"cost\": \"<number>\",\n      \"weight\": \"<number>\",\n      \"ship_date\": \"<string>\"\n    }\n  ],\n  \"order_metadata\": {\n    \"key_0\": 3482,\n    \"key_1\": \"string\"\n  },\n  \"date_added\": \"<string>\",\n  \"date_updated\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"order\": {\n    \"id\": \"<string>\",\n    \"source_id\": \"<string>\",\n    \"source_name\": \"<string>\",\n    \"email\": \"<string>\",\n    \"order_total\": \"<number>\",\n    \"folder_id\": \"<integer>\",\n    \"customer_first_name\": \"<string>\",\n    \"customer_last_name\": \"<string>\",\n    \"shipping\": {\n      \"key_0\": true,\n      \"key_1\": false\n    },\n    \"customer\": {\n      \"key_0\": true,\n      \"key_1\": 3964\n    },\n    \"order_items\": [\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"code\": \"<string>\",\n        \"price\": \"<number>\",\n        \"quantity\": \"<integer>\",\n        \"weight\": \"<number>\",\n        \"variation_list\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        },\n        \"metadata\": {\n          \"key_0\": \"string\"\n        }\n      },\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"code\": \"<string>\",\n        \"price\": \"<number>\",\n        \"quantity\": \"<integer>\",\n        \"weight\": \"<number>\",\n        \"variation_list\": {\n          \"key_0\": \"string\",\n          \"key_1\": 8891.310425830192\n        },\n        \"metadata\": {\n          \"key_0\": 970\n        }\n      }\n    ],\n    \"shipments\": [\n      {\n        \"id\": \"<string>\",\n        \"tracking_number\": \"<string>\",\n        \"carrier_code\": \"<string>\",\n        \"shipment_method\": \"<string>\",\n        \"cost\": \"<number>\",\n        \"weight\": \"<number>\",\n        \"ship_date\": \"<string>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"tracking_number\": \"<string>\",\n        \"carrier_code\": \"<string>\",\n        \"shipment_method\": \"<string>\",\n        \"cost\": \"<number>\",\n        \"weight\": \"<number>\",\n        \"ship_date\": \"<string>\"\n      }\n    ],\n    \"order_metadata\": {\n      \"key_0\": true\n    },\n    \"date_added\": \"<string>\",\n    \"date_updated\": \"<string>\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "64a26a46-488c-4ee6-83ab-a07c58cbe0cc",
+              "name": "Missing or invalid store ID / API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":order_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "order_id",
+                      "description": "(Required) The ID of the order."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ORDERDESK-STORE-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"source_id\": \"<string>\",\n  \"source_name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"order_total\": \"<number>\",\n  \"folder_id\": \"<integer>\",\n  \"customer_first_name\": \"<string>\",\n  \"customer_last_name\": \"<string>\",\n  \"shipping\": {\n    \"key_0\": 5580.86025346356,\n    \"key_1\": false\n  },\n  \"customer\": {\n    \"key_0\": \"string\"\n  },\n  \"order_items\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"code\": \"<string>\",\n      \"price\": \"<number>\",\n      \"quantity\": \"<integer>\",\n      \"weight\": \"<number>\",\n      \"variation_list\": {\n        \"key_0\": 7070.599242575865,\n        \"key_1\": 9110\n      },\n      \"metadata\": {\n        \"key_0\": true,\n        \"key_1\": 2685.9850024913744,\n        \"key_2\": 4046.2342540160744\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"code\": \"<string>\",\n      \"price\": \"<number>\",\n      \"quantity\": \"<integer>\",\n      \"weight\": \"<number>\",\n      \"variation_list\": {\n        \"key_0\": 4509.335853364201,\n        \"key_1\": false,\n        \"key_2\": 6124.035001059239\n      },\n      \"metadata\": {\n        \"key_0\": true\n      }\n    }\n  ],\n  \"shipments\": [\n    {\n      \"id\": \"<string>\",\n      \"tracking_number\": \"<string>\",\n      \"carrier_code\": \"<string>\",\n      \"shipment_method\": \"<string>\",\n      \"cost\": \"<number>\",\n      \"weight\": \"<number>\",\n      \"ship_date\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"tracking_number\": \"<string>\",\n      \"carrier_code\": \"<string>\",\n      \"shipment_method\": \"<string>\",\n      \"cost\": \"<number>\",\n      \"weight\": \"<number>\",\n      \"ship_date\": \"<string>\"\n    }\n  ],\n  \"order_metadata\": {\n    \"key_0\": 3482,\n    \"key_1\": \"string\"\n  },\n  \"date_added\": \"<string>\",\n  \"date_updated\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"message\": \"string\",\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bf81f496-6f24-4258-99d3-5a98d430fd3f",
+          "name": "Delete an order",
+          "request": {
+            "name": "Delete an order",
+            "description": {
+              "content": "Permanently deletes an order.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orders",
+                ":order_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "order_id",
+                  "description": "(Required) The ID of the order."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ea757f5b-8db4-4311-a233-4a09554b718e",
+              "name": "Deletion result.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":order_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "order_id",
+                      "description": "(Required) The ID of the order."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ORDERDESK-STORE-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"message\": \"string\",\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1716318e-5ec8-4011-9809-820d9c7a9b7b",
+              "name": "Missing or invalid store ID / API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":order_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "order_id",
+                      "description": "(Required) The ID of the order."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ORDERDESK-STORE-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"message\": \"string\",\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f8087b45-e83f-4347-ac1d-15004fdf9dcf",
+          "name": "Add an order history note",
+          "request": {
+            "name": "Add an order history note",
+            "description": {
+              "content": "Appends a note to the order's history log.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orders",
+                ":order_id",
+                "order-history"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "order_id",
+                  "description": "(Required) The ID of the order."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"note\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "eb6e8572-4e37-4650-957d-219841d9356c",
+              "name": "History note added.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":order_id",
+                    "order-history"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "order_id",
+                      "description": "(Required) The ID of the order."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ORDERDESK-STORE-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"note\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"message\": \"string\",\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f3a047ac-6051-4446-b36a-acb6de3f9f5c",
+              "name": "Missing or invalid store ID / API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":order_id",
+                    "order-history"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "order_id",
+                      "description": "(Required) The ID of the order."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ORDERDESK-STORE-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"note\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"message\": \"string\",\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "09c88c75-eeeb-4379-a622-7c77595cdf51",
+          "name": "Move orders to a folder",
+          "request": {
+            "name": "Move orders to a folder",
+            "description": {
+              "content": "Moves one or more orders into a different folder.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "move-orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"order_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"folder_id\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1f589cf0-48f5-4515-8f78-76b554e504cd",
+              "name": "Move result.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "move-orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ORDERDESK-STORE-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"order_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"folder_id\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"message\": \"string\",\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e593695f-6071-4b6b-8967-0a5ba338dc46",
+              "name": "Missing or invalid store ID / API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "move-orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ORDERDESK-STORE-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"order_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"folder_id\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"message\": \"string\",\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://app.orderdesk.me/api/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ORDERDESK-STORE-ID"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "45fac645-e389-4a5b-b124-6e24f3631517",
+    "name": "Order Desk Inventory Items Orders API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Order Desk API is a JSON REST API for programmatically managing an Order Desk store - an ecommerce order management and fulfillment routing platform. It exposes Orders, Order Items, Shipments, Inventory Items, and Store settings, plus batch and utility endpoints. Every request must include two headers, ORDERDESK-STORE-ID and ORDERDESK-API-KEY, which are found in the Order Desk dashboard under Store Settings then API. List endpoints support limit (default 50, max 500) and offset pagination and return a status field with pagination metadata. The API is rate limited with a leaky-bucket limiter (~100 requests per rolling 30-second window).\n\nContact Support:\n Name: Order Desk",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,195 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Order Desk Inventory Items Orders API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ORDERDESK-STORE-ID",
+      "value": "{{ORDERDESK-STORE-ID}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Orders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search orders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.orderdesk.me/api/v2/orders",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to return (default 50, max 500)."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip."
+              },
+              {
+                "name": "folder_id",
+                "value": "",
+                "type": "query",
+                "description": "Restrict results to a specific folder."
+              },
+              {
+                "name": "source_name",
+                "value": "",
+                "type": "query",
+                "description": "Filter by the order source (e.g. Shopify, Amazon)."
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "Filter by customer email address."
+              },
+              {
+                "name": "search_start_date",
+                "value": "",
+                "type": "query",
+                "description": "Start of a date range filter."
+              },
+              {
+                "name": "search_end_date",
+                "value": "",
+                "type": "query",
+                "description": "End of a date range filter."
+              }
+            ]
+          },
+          "docs": "Retrieves multiple orders, optionally filtered by folder, status, source, date range, email, or search terms, with limit/offset pagination."
+        },
+        {
+          "info": {
+            "name": "Create an order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.orderdesk.me/api/v2/orders",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new order in the store."
+        },
+        {
+          "info": {
+            "name": "Get a single order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.orderdesk.me/api/v2/orders/:order_id",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the order."
+              }
+            ]
+          },
+          "docs": "Retrieves the details of a single order by its ID."
+        },
+        {
+          "info": {
+            "name": "Update an order",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://app.orderdesk.me/api/v2/orders/:order_id",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the order."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing order. Only supplied fields are changed."
+        },
+        {
+          "info": {
+            "name": "Delete an order",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://app.orderdesk.me/api/v2/orders/:order_id",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the order."
+              }
+            ]
+          },
+          "docs": "Permanently deletes an order."
+        },
+        {
+          "info": {
+            "name": "Add an order history note",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.orderdesk.me/api/v2/orders/:order_id/order-history",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the order."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Appends a note to the order's history log."
+        },
+        {
+          "info": {
+            "name": "Move orders to a folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.orderdesk.me/api/v2/move-orders",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Moves one or more orders into a different folder."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

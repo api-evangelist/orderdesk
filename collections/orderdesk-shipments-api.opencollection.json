@@ -1,0 +1,162 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Order Desk Inventory Items Shipments API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ORDERDESK-STORE-ID",
+      "value": "{{ORDERDESK-STORE-ID}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Shipments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List shipments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.orderdesk.me/api/v2/orders/:order_id/shipments",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the order."
+              }
+            ]
+          },
+          "docs": "Returns all shipments recorded against an order."
+        },
+        {
+          "info": {
+            "name": "Create a shipment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.orderdesk.me/api/v2/orders/:order_id/shipments",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the order."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Records a new shipment with carrier and tracking details."
+        },
+        {
+          "info": {
+            "name": "Get a shipment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.orderdesk.me/api/v2/orders/:order_id/shipments/:shipment_id",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the order."
+              },
+              {
+                "name": "shipment_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the shipment."
+              }
+            ]
+          },
+          "docs": "Retrieves a single shipment from an order."
+        },
+        {
+          "info": {
+            "name": "Update a shipment",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://app.orderdesk.me/api/v2/orders/:order_id/shipments/:shipment_id",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the order."
+              },
+              {
+                "name": "shipment_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the shipment."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing shipment."
+        },
+        {
+          "info": {
+            "name": "Delete a shipment",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://app.orderdesk.me/api/v2/orders/:order_id/shipments/:shipment_id",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the order."
+              },
+              {
+                "name": "shipment_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the shipment."
+              }
+            ]
+          },
+          "docs": "Deletes a shipment from an order."
+        },
+        {
+          "info": {
+            "name": "Add multiple shipments",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.orderdesk.me/api/v2/batch-shipments",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds many shipments across orders in a single request."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

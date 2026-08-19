@@ -1,0 +1,48 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Order Desk Inventory Items Store API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ORDERDESK-STORE-ID",
+      "value": "{{ORDERDESK-STORE-ID}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Store",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Test API connection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.orderdesk.me/api/v2/test"
+          },
+          "docs": "Verifies that the store ID and API key are valid and the API is reachable."
+        },
+        {
+          "info": {
+            "name": "Retrieve store settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.orderdesk.me/api/v2/store"
+          },
+          "docs": "Returns the store's settings and folder structure."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

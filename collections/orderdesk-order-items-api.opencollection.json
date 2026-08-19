@@ -1,0 +1,147 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Order Desk Inventory Items Order Items API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ORDERDESK-STORE-ID",
+      "value": "{{ORDERDESK-STORE-ID}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Order Items",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List order items",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.orderdesk.me/api/v2/orders/:order_id/order-items",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the order."
+              }
+            ]
+          },
+          "docs": "Returns all line items for an order."
+        },
+        {
+          "info": {
+            "name": "Add an order item",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.orderdesk.me/api/v2/orders/:order_id/order-items",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the order."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a new line item to an order."
+        },
+        {
+          "info": {
+            "name": "Get an order item",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.orderdesk.me/api/v2/orders/:order_id/order-items/:item_id",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the order."
+              },
+              {
+                "name": "item_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the order item."
+              }
+            ]
+          },
+          "docs": "Retrieves a single line item from an order."
+        },
+        {
+          "info": {
+            "name": "Update an order item",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://app.orderdesk.me/api/v2/orders/:order_id/order-items/:item_id",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the order."
+              },
+              {
+                "name": "item_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the order item."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing line item."
+        },
+        {
+          "info": {
+            "name": "Remove an order item",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://app.orderdesk.me/api/v2/orders/:order_id/order-items/:item_id",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the order."
+              },
+              {
+                "name": "item_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the order item."
+              }
+            ]
+          },
+          "docs": "Removes a line item from an order."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

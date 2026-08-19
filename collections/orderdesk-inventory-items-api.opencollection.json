@@ -1,0 +1,154 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Order Desk Inventory Items API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ORDERDESK-STORE-ID",
+      "value": "{{ORDERDESK-STORE-ID}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Inventory Items",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List inventory items",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.orderdesk.me/api/v2/inventory-items",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to return (default 50, max 500)."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip."
+              },
+              {
+                "name": "code",
+                "value": "",
+                "type": "query",
+                "description": "Filter by inventory item code."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Free-text search across inventory items."
+              }
+            ]
+          },
+          "docs": "Returns inventory items with limit/offset pagination and optional search."
+        },
+        {
+          "info": {
+            "name": "Create an inventory item",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.orderdesk.me/api/v2/inventory-items",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a new item to the inventory catalog."
+        },
+        {
+          "info": {
+            "name": "Get an inventory item",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.orderdesk.me/api/v2/inventory-items/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the inventory item."
+              }
+            ]
+          },
+          "docs": "Retrieves a single inventory item by ID."
+        },
+        {
+          "info": {
+            "name": "Update an inventory item",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://app.orderdesk.me/api/v2/inventory-items/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the inventory item."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing inventory item."
+        },
+        {
+          "info": {
+            "name": "Delete an inventory item",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://app.orderdesk.me/api/v2/inventory-items/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the inventory item."
+              }
+            ]
+          },
+          "docs": "Removes an item from the inventory catalog."
+        },
+        {
+          "info": {
+            "name": "Update multiple inventory items",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://app.orderdesk.me/api/v2/batch-inventory-items",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates or updates many inventory items in a single request."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

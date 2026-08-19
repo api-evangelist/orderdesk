@@ -1,0 +1,1074 @@
+{
+  "item": [
+    {
+      "id": "4eaa5ccf-0449-448e-96a3-f6fdf05bc985",
+      "name": "Inventory Items",
+      "description": {
+        "content": "Maintain the store's inventory catalog.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ab089708-0dce-4005-9c6e-bab67ed6fe23",
+          "name": "List inventory items",
+          "request": {
+            "name": "List inventory items",
+            "description": {
+              "content": "Returns inventory items with limit/offset pagination and optional search.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "inventory-items"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "50",
+                  "description": "Number of records to return (default 50, max 500)."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Number of records to skip."
+                },
+                {
+                  "disabled": false,
+                  "key": "code",
+                  "value": "<string>",
+                  "description": "Filter by inventory item code."
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "Free-text search across inventory items."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cb8f0131-7adc-4af5-9751-de5b95734d30",
+              "name": "A list of inventory items.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "inventory-items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "code",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ORDERDESK-STORE-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"total_records\": 3130,\n  \"records_returned\": 6206,\n  \"offset\": 3860,\n  \"limit\": 451,\n  \"inventory_items\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"code\": \"string\",\n      \"price\": 6028.997207633165,\n      \"cost\": 178.66496475877904,\n      \"weight\": 5922.105288962507,\n      \"stock\": 6057,\n      \"location\": \"string\",\n      \"metadata\": {\n        \"key_0\": false\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"code\": \"string\",\n      \"price\": 938.4803884420722,\n      \"cost\": 5618.13408857693,\n      \"weight\": 3903.630993793036,\n      \"stock\": 8119,\n      \"location\": \"string\",\n      \"metadata\": {\n        \"key_0\": \"string\",\n        \"key_1\": true\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b311e3bd-8ba2-4e62-ad01-cdca30bb73ad",
+              "name": "Missing or invalid store ID / API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "inventory-items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "code",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ORDERDESK-STORE-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"message\": \"string\",\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4c1ee3a1-4dd6-4141-bf9e-0234ea4259bd",
+              "name": "Rate limit exceeded. Retry after the number of seconds in X-Retry-After.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "inventory-items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "code",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ORDERDESK-STORE-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Seconds to wait before retrying.",
+                  "key": "X-Retry-After",
+                  "value": "2604"
+                },
+                {
+                  "disabled": false,
+                  "description": "Remaining requests in the leaky-bucket window.",
+                  "key": "X-Tokens-Remaining",
+                  "value": "2604"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"message\": \"string\",\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d7980dba-8eb5-4340-a19b-899244c1e452",
+          "name": "Create an inventory item",
+          "request": {
+            "name": "Create an inventory item",
+            "description": {
+              "content": "Adds a new item to the inventory catalog.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "inventory-items"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"code\": \"<string>\",\n  \"price\": \"<number>\",\n  \"cost\": \"<number>\",\n  \"weight\": \"<number>\",\n  \"stock\": \"<integer>\",\n  \"location\": \"<string>\",\n  \"metadata\": {\n    \"key_0\": 1082,\n    \"key_1\": false,\n    \"key_2\": 5862\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c8d324a3-8b81-4845-a7a3-4748d20ddb96",
+              "name": "The created inventory item.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "inventory-items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ORDERDESK-STORE-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"code\": \"<string>\",\n  \"price\": \"<number>\",\n  \"cost\": \"<number>\",\n  \"weight\": \"<number>\",\n  \"stock\": \"<integer>\",\n  \"location\": \"<string>\",\n  \"metadata\": {\n    \"key_0\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"message\": \"string\",\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "43f571b3-7a11-462f-ad80-c8edddfb64b4",
+              "name": "Missing or invalid store ID / API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "inventory-items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ORDERDESK-STORE-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"code\": \"<string>\",\n  \"price\": \"<number>\",\n  \"cost\": \"<number>\",\n  \"weight\": \"<number>\",\n  \"stock\": \"<integer>\",\n  \"location\": \"<string>\",\n  \"metadata\": {\n    \"key_0\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"message\": \"string\",\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d8f386f8-878d-4008-b8d2-777e27ebf706",
+          "name": "Get an inventory item",
+          "request": {
+            "name": "Get an inventory item",
+            "description": {
+              "content": "Retrieves a single inventory item by ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "inventory-items",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of the inventory item."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "99feaaf7-289f-4aae-9f52-40ac51ea3515",
+              "name": "The requested inventory item.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "inventory-items",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the inventory item."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ORDERDESK-STORE-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"inventory_item\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"code\": \"<string>\",\n    \"price\": \"<number>\",\n    \"cost\": \"<number>\",\n    \"weight\": \"<number>\",\n    \"stock\": \"<integer>\",\n    \"location\": \"<string>\",\n    \"metadata\": {\n      \"key_0\": 549,\n      \"key_1\": true\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8d9ea2fa-96d5-425b-b23d-b099bd87d532",
+              "name": "Missing or invalid store ID / API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "inventory-items",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the inventory item."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ORDERDESK-STORE-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"message\": \"string\",\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b1d3fe4e-e209-4d9d-b9a8-ab25a58c3083",
+          "name": "Update an inventory item",
+          "request": {
+            "name": "Update an inventory item",
+            "description": {
+              "content": "Updates an existing inventory item.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "inventory-items",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of the inventory item."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"code\": \"<string>\",\n  \"price\": \"<number>\",\n  \"cost\": \"<number>\",\n  \"weight\": \"<number>\",\n  \"stock\": \"<integer>\",\n  \"location\": \"<string>\",\n  \"metadata\": {\n    \"key_0\": 1082,\n    \"key_1\": false,\n    \"key_2\": 5862\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "de87168c-5c65-462c-bdfd-d93acf6cb208",
+              "name": "The updated inventory item.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "inventory-items",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the inventory item."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ORDERDESK-STORE-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"code\": \"<string>\",\n  \"price\": \"<number>\",\n  \"cost\": \"<number>\",\n  \"weight\": \"<number>\",\n  \"stock\": \"<integer>\",\n  \"location\": \"<string>\",\n  \"metadata\": {\n    \"key_0\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"message\": \"string\",\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9779a216-b15e-45ec-ac71-798b6c437963",
+              "name": "Missing or invalid store ID / API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "inventory-items",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the inventory item."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ORDERDESK-STORE-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"code\": \"<string>\",\n  \"price\": \"<number>\",\n  \"cost\": \"<number>\",\n  \"weight\": \"<number>\",\n  \"stock\": \"<integer>\",\n  \"location\": \"<string>\",\n  \"metadata\": {\n    \"key_0\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"message\": \"string\",\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7d3508c9-1e1f-4d18-97cd-807d556c5ca8",
+          "name": "Delete an inventory item",
+          "request": {
+            "name": "Delete an inventory item",
+            "description": {
+              "content": "Removes an item from the inventory catalog.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "inventory-items",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of the inventory item."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d432896a-285c-4f17-aedc-ef2a03d9936b",
+              "name": "Deletion result.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "inventory-items",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the inventory item."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ORDERDESK-STORE-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"message\": \"string\",\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f15609fe-d415-4390-9aa9-c4a628f9b1b4",
+              "name": "Missing or invalid store ID / API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "inventory-items",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the inventory item."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ORDERDESK-STORE-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"message\": \"string\",\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c40c3408-338c-40c2-bcd0-c8e76401421e",
+          "name": "Update multiple inventory items",
+          "request": {
+            "name": "Update multiple inventory items",
+            "description": {
+              "content": "Creates or updates many inventory items in a single request.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "batch-inventory-items"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"inventory_items\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"code\": \"<string>\",\n      \"price\": \"<number>\",\n      \"cost\": \"<number>\",\n      \"weight\": \"<number>\",\n      \"stock\": \"<integer>\",\n      \"location\": \"<string>\",\n      \"metadata\": {\n        \"key_0\": \"string\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"code\": \"<string>\",\n      \"price\": \"<number>\",\n      \"cost\": \"<number>\",\n      \"weight\": \"<number>\",\n      \"stock\": \"<integer>\",\n      \"location\": \"<string>\",\n      \"metadata\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\",\n        \"key_2\": true\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ed0f7a93-445a-416c-a30d-002239603042",
+              "name": "Batch result.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "batch-inventory-items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ORDERDESK-STORE-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"inventory_items\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"code\": \"<string>\",\n      \"price\": \"<number>\",\n      \"cost\": \"<number>\",\n      \"weight\": \"<number>\",\n      \"stock\": \"<integer>\",\n      \"location\": \"<string>\",\n      \"metadata\": {\n        \"key_0\": true\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"code\": \"<string>\",\n      \"price\": \"<number>\",\n      \"cost\": \"<number>\",\n      \"weight\": \"<number>\",\n      \"stock\": \"<integer>\",\n      \"location\": \"<string>\",\n      \"metadata\": {\n        \"key_0\": 3862,\n        \"key_1\": 5912,\n        \"key_2\": true\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"message\": \"string\",\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c2d8bd2d-1f94-4e82-afaf-16001999f3a5",
+              "name": "Missing or invalid store ID / API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "batch-inventory-items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ORDERDESK-STORE-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"inventory_items\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"code\": \"<string>\",\n      \"price\": \"<number>\",\n      \"cost\": \"<number>\",\n      \"weight\": \"<number>\",\n      \"stock\": \"<integer>\",\n      \"location\": \"<string>\",\n      \"metadata\": {\n        \"key_0\": true\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"code\": \"<string>\",\n      \"price\": \"<number>\",\n      \"cost\": \"<number>\",\n      \"weight\": \"<number>\",\n      \"stock\": \"<integer>\",\n      \"location\": \"<string>\",\n      \"metadata\": {\n        \"key_0\": 3862,\n        \"key_1\": 5912,\n        \"key_2\": true\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"message\": \"string\",\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://app.orderdesk.me/api/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ORDERDESK-STORE-ID"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ef3c976a-be84-4244-a86f-bcf34125ad1f",
+    "name": "Order Desk Inventory Items API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Order Desk API is a JSON REST API for programmatically managing an Order Desk store - an ecommerce order management and fulfillment routing platform. It exposes Orders, Order Items, Shipments, Inventory Items, and Store settings, plus batch and utility endpoints. Every request must include two headers, ORDERDESK-STORE-ID and ORDERDESK-API-KEY, which are found in the Order Desk dashboard under Store Settings then API. List endpoints support limit (default 50, max 500) and offset pagination and return a status field with pagination metadata. The API is rate limited with a leaky-bucket limiter (~100 requests per rolling 30-second window).\n\nContact Support:\n Name: Order Desk",
+      "type": "text/plain"
+    }
+  }
+}

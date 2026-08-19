@@ -1,0 +1,291 @@
+{
+  "item": [
+    {
+      "id": "c8e5a7ab-f08f-4140-8464-5c995c389663",
+      "name": "Store",
+      "description": {
+        "content": "Store settings, folder structure, and connectivity test.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1d887f70-6997-4e66-be4f-12f29cbefc70",
+          "name": "Test API connection",
+          "request": {
+            "name": "Test API connection",
+            "description": {
+              "content": "Verifies that the store ID and API key are valid and the API is reachable.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "test"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "967c419b-435b-4510-901b-f3734edcab57",
+              "name": "Connection succeeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "test"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ORDERDESK-STORE-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"message\": \"string\",\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "459cad3b-62ba-40f5-862c-e88c901d474b",
+              "name": "Missing or invalid store ID / API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "test"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ORDERDESK-STORE-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"message\": \"string\",\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fe5eeb09-3988-4853-b4a6-65e482cad2c3",
+          "name": "Retrieve store settings",
+          "request": {
+            "name": "Retrieve store settings",
+            "description": {
+              "content": "Returns the store's settings and folder structure.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "store"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "37a01584-a18e-4529-acba-d38ae02363b1",
+              "name": "Store settings and folders.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "store"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ORDERDESK-STORE-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"store\": {\n    \"id\": 753,\n    \"name\": \"string\",\n    \"folders\": [\n      {\n        \"id\": 3378,\n        \"name\": \"string\"\n      },\n      {\n        \"id\": 2377,\n        \"name\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a5c92e33-e378-409c-8723-7a75cd6a9f0b",
+              "name": "Missing or invalid store ID / API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "store"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ORDERDESK-STORE-ID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"message\": \"string\",\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://app.orderdesk.me/api/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ORDERDESK-STORE-ID"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "46c40309-24f9-4251-98ff-570962ae6ecc",
+    "name": "Order Desk Inventory Items Store API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Order Desk API is a JSON REST API for programmatically managing an Order Desk store - an ecommerce order management and fulfillment routing platform. It exposes Orders, Order Items, Shipments, Inventory Items, and Store settings, plus batch and utility endpoints. Every request must include two headers, ORDERDESK-STORE-ID and ORDERDESK-API-KEY, which are found in the Order Desk dashboard under Store Settings then API. List endpoints support limit (default 50, max 500) and offset pagination and return a status field with pagination metadata. The API is rate limited with a leaky-bucket limiter (~100 requests per rolling 30-second window).\n\nContact Support:\n Name: Order Desk",
+      "type": "text/plain"
+    }
+  }
+}
