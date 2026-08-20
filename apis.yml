@@ -25,6 +25,13 @@ accessModel:
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/orderdesk.png
 tags:
+- E-Commerce
+- Order Management
+- Fulfillment
+- Dropshipping
+- Inventory
+- Shipping
+tags_raw:
 - Ecommerce
 - Order Management
 - Fulfillment
@@ -77,6 +84,8 @@ apis:
   humanURL: https://apidocs.orderdesk.com/
   baseURL: https://app.orderdesk.me/api/v2
   tags:
+  - Order
+  tags_raw:
   - Orders
   properties:
   - type: OpenAPI
