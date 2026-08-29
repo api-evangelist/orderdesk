@@ -147,6 +147,9 @@ apis:
   - type: OpenCollection
     url: collections/orderdesk.opencollection.json
 common:
+- type: CapabilityMap
+  url: capabilities/orderdesk-capability-edges.yml
+  name: Order Desk Business Capability Map
 - type: AgenticAccess
   url: agentic-access/orderdesk-agentic-access.yml
 - type: DomainSecurity

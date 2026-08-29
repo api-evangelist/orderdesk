@@ -1,0 +1,34 @@
+slug: orderdesk
+provider: Order Desk
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Transportation & Logistics
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 2
+edges:
+- tag: Orders
+  spec_file: orderdesk-orders-api-openapi.yml
+  capability_id: BC-520.40
+  capability_id_l1: BC-520
+  capability_name: Order Fulfilment Management
+  confidence: 0.75
+  evidence: POST /orders createOrder; POST /move-orders "Move orders to a folder"; vendor "centralizes
+    orders from shopping carts and marketplaces, then automates routing"
+  reason: Order lifecycle CRUD plus routing of orders through fulfilment folders is order fulfilment orchestration,
+    not sales pipeline management.
+- tag: Inventory Items
+  spec_file: orderdesk-inventory-items-api-openapi.yml
+  capability_id: BC-530
+  capability_id_l1: BC-530
+  capability_name: Inventory Management
+  confidence: 0.7
+  evidence: GET/POST/PUT /inventory-items, "Update multiple inventory items"; schema InventoryItem
+  reason: Maintains stock item records for an ecommerce store's fulfilment operation; generic inventory
+    record CRUD without evidence of reorder points, allocation or cycle counting.
