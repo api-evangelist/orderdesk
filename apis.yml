@@ -10,6 +10,18 @@ description: Order Desk is an ecommerce order management and fulfillment routing
   exposes Orders, Order Items, Shipments, Inventory Items, and Store settings so
   developers can create and update orders, manage line items, record shipments and
   tracking, and sync inventory programmatically.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: self-serve
