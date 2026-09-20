@@ -148,6 +148,8 @@ apis:
   - type: OpenCollection
     url: collections/orderdesk.opencollection.json
 common:
+- type: Pricing
+  url: https://www.orderdesk.com/pricing/
 - type: CapabilityMap
   url: capabilities/orderdesk-capability-edges.yml
   name: Order Desk Business Capability Map

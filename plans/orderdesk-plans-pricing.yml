@@ -1,151 +1,39 @@
-specification: API Commons Plans
-specificationVersion: '0.1'
-schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
-provider: Order Desk
-providerId: orderdesk
-created: '2026-07-11'
-modified: '2026-07-11'
-reconciled: false
-tags:
-- Ecommerce
-- Order Management
-- Fulfillment
-- Plans
-description: >-
-  Order Desk bills on a two-part model - a monthly subscription fee plus a
-  per-order fee that covers securely storing each order's data. There are three
-  published tiers (Starter, Pro, Plus); higher tiers cost more per month but
-  charge less per order and unlock more integrations, users, and child stores.
-  The public REST API is available on every plan and on the 30-day trial at no
-  additional API-specific charge - API usage is billed the same as any other
-  order created in the store.
-notes: >-
-  Prices verified from orderdesk.com/pricing on the created date and may change.
-  Each invoice contains the upcoming month's subscription fee plus the previous
-  month's per-order fees. The trial waives the monthly subscription fee for 30
-  days but per-order fees still apply.
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-09-20'
+method: searched
+source: https://www.orderdesk.com/pricing/
 sources:
 - https://www.orderdesk.com/pricing/
-- https://help.orderdesk.com/order-desk-101/how-does-order-desks-pricing-work/
+provenance:
+  tool: planning/api-economics/harvest_pricing.py
+  run: 20260920T124425
+  grounding: every price_text was found verbatim in the fetched page text
+audience: business-product
+pricing_basis: tiered-subscription
+published: true
+note: Three named monthly tiers each combining a flat monthly fee with a per-order fee; 30 day free trial
+  waives monthly fee but not order fees. Enterprise pricing available by contacting them.
+plan_count: 3
+currency: USD
 plans:
-- id: orderdesk-starter
-  name: Starter
-  type: paid
-  description: >-
-    Entry tier for small stores. Includes one user account and up to three
-    integrations. Full access to the REST API, rule builder, and exports.
-  entries:
-  - label: Monthly Subscription
-    name: monthly_subscription
-    type: flat
-    metric: subscription
-    limit: -1
-    timeFrame: month
-    geo: global
-    unit: 1
-    price: USD 20.00 per month
-    userMultiplied: false
-  - label: Per-Order Fee
-    name: per_order_fee
-    type: usage
-    metric: orders
-    limit: -1
-    timeFrame: month
-    geo: global
-    unit: 1
-    price: USD 0.25 per order
-    userMultiplied: false
-  elements:
-  - name: Up to 3 Integrations
-  - name: One User Account
-  - name: REST API Access
-  - name: Rule Builder
-  - name: Custom Data Exports
-- id: orderdesk-pro
-  name: Pro
-  type: paid
-  description: >-
-    Mid tier for growing stores. Unlimited integrations and unlimited users,
-    with a lower per-order fee than Starter.
-  entries:
-  - label: Monthly Subscription
-    name: monthly_subscription
-    type: flat
-    metric: subscription
-    limit: -1
-    timeFrame: month
-    geo: global
-    unit: 1
-    price: USD 60.00 per month
-    userMultiplied: false
-  - label: Per-Order Fee
-    name: per_order_fee
-    type: usage
-    metric: orders
-    limit: -1
-    timeFrame: month
-    geo: global
-    unit: 1
-    price: USD 0.10 per order
-    userMultiplied: false
-  elements:
-  - name: Unlimited Integrations
-  - name: Unlimited Users
-  - name: REST API Access
-  - name: Rule Builder
-  - name: Custom Data Exports
-- id: orderdesk-plus
-  name: Plus
-  type: paid
-  description: >-
-    Top tier for high-volume operators and agencies. Unlimited Pro child
-    stores, unlimited integrations and users, and the lowest per-order fee.
-  entries:
-  - label: Monthly Subscription
-    name: monthly_subscription
-    type: flat
-    metric: subscription
-    limit: -1
-    timeFrame: month
-    geo: global
-    unit: 1
-    price: USD 125.00 per month
-    userMultiplied: false
-  - label: Per-Order Fee
-    name: per_order_fee
-    type: usage
-    metric: orders
-    limit: -1
-    timeFrame: month
-    geo: global
-    unit: 1
-    price: USD 0.05 per order
-    userMultiplied: false
-  elements:
-  - name: Unlimited Pro Child Stores
-  - name: Unlimited Integrations
-  - name: Unlimited Users
-  - name: REST API Access
-- id: orderdesk-trial
-  name: 30-Day Trial
-  type: trial
-  description: >-
-    Fully-featured 30-day trial that waives the monthly subscription fee.
-    Per-order fees still apply and are billed on the first invoice.
-  entries:
-  - label: Trial Subscription
-    name: trial_subscription
-    type: flat
-    metric: subscription
-    limit: -1
-    timeFrame: month
-    geo: global
-    unit: 1
-    price: USD 0.00 monthly fee for 30 days (per-order fees apply)
-    userMultiplied: false
-  elements:
-  - name: Full Feature Access
-  - name: REST API Access
-maintainers:
-- FN: Kin Lane
-  email: kin@apievangelist.com
+- name: Starter
+  price_text: $20/mo plus 25¢ per order
+  currency: USD
+  period: month
+  unit: store subscription plus per order
+  included_quota: Connect up to 3 integrations, One user
+  overage: 25¢ per order
+- name: Pro
+  price_text: $60/mo plus 10¢ per order
+  currency: USD
+  period: month
+  unit: store subscription plus per order
+  included_quota: Unlimited integrations, Unlimited users
+  overage: 10¢ per order
+- name: Plus
+  price_text: $125/mo plus 5¢ per order
+  currency: USD
+  period: month
+  unit: store subscription plus per order
+  included_quota: Unlimited Pro Stores, Unlimited integrations, Unlimited users
+  overage: 5¢ per order
