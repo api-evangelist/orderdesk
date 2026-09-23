@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Order Desk Inventory Items Orders API
-  description: The Order Desk API is a JSON REST API for programmatically managing an Order Desk store - an ecommerce order management and fulfillment routing platform. It exposes Orders, Order Items, Shipments, Inventory Items, and Store settings, plus batch and utility endpoints. Every request must include two headers, ORDERDESK-STORE-ID and ORDERDESK-API-KEY, which are found in the Order Desk dashboard under Store Settings then API. List endpoints support limit (default 50, max 500) and offset pagination and return a status field with pagination metadata. The API is rate limited with a leaky-bucket limiter (~100 requests per rolling 30-second window).
+  title: Order Desk Orders API
+  description: The Order Desk API is a JSON REST API for programmatically managing an Order Desk store - an ecommerce order management and fulfillment routing platform.
   version: '2.0'
   contact:
     name: Order Desk
@@ -212,6 +212,28 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  responses:
+    Unauthorized:
+      description: Missing or invalid store ID / API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/StatusResponse'
+    RateLimited:
+      description: Rate limit exceeded. Retry after the number of seconds in X-Retry-After.
+      headers:
+        X-Retry-After:
+          schema:
+            type: integer
+          description: Seconds to wait before retrying.
+        X-Tokens-Remaining:
+          schema:
+            type: integer
+          description: Remaining requests in the leaky-bucket window.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/StatusResponse'
   schemas:
     Shipment:
       type: object
@@ -230,25 +252,27 @@ components:
           type: number
         ship_date:
           type: string
-    OrderResponse:
+    OrderItem:
       type: object
       properties:
-        status:
+        id:
           type: string
-        order:
-          $ref: '#/components/schemas/Order'
-    StatusResponse:
-      type: object
-      properties:
-        status:
+        name:
           type: string
-          description: success or error.
-        message:
+        code:
           type: string
-        errors:
-          type: array
-          items:
-            type: string
+        price:
+          type: number
+        quantity:
+          type: integer
+        weight:
+          type: number
+        variation_list:
+          type: object
+          additionalProperties: true
+        metadata:
+          type: object
+          additionalProperties: true
     Order:
       type: object
       properties:
@@ -289,35 +313,33 @@ components:
           type: string
         date_updated:
           type: string
-    OrderItem:
+    StatusResponse:
       type: object
       properties:
-        id:
+        status:
           type: string
-        name:
+          description: success or error.
+        message:
           type: string
-        code:
+        errors:
+          type: array
+          items:
+            type: string
+    OrderResponse:
+      type: object
+      properties:
+        status:
           type: string
-        price:
-          type: number
-        quantity:
-          type: integer
-        weight:
-          type: number
-        variation_list:
-          type: object
-          additionalProperties: true
-        metadata:
-          type: object
-          additionalProperties: true
+        order:
+          $ref: '#/components/schemas/Order'
   parameters:
-    OrderId:
-      name: order_id
-      in: path
-      required: true
+    Offset:
+      name: offset
+      in: query
       schema:
-        type: string
-      description: The ID of the order.
+        type: integer
+        default: 0
+      description: Number of records to skip.
     Limit:
       name: limit
       in: query
@@ -326,35 +348,13 @@ components:
         default: 50
         maximum: 500
       description: Number of records to return (default 50, max 500).
-    Offset:
-      name: offset
-      in: query
+    OrderId:
+      name: order_id
+      in: path
+      required: true
       schema:
-        type: integer
-        default: 0
-      description: Number of records to skip.
-  responses:
-    Unauthorized:
-      description: Missing or invalid store ID / API key.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/StatusResponse'
-    RateLimited:
-      description: Rate limit exceeded. Retry after the number of seconds in X-Retry-After.
-      headers:
-        X-Retry-After:
-          schema:
-            type: integer
-          description: Seconds to wait before retrying.
-        X-Tokens-Remaining:
-          schema:
-            type: integer
-          description: Remaining requests in the leaky-bucket window.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/StatusResponse'
+        type: string
+      description: The ID of the order.
   securitySchemes:
     storeId:
       type: apiKey

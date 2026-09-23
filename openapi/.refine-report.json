@@ -1,11 +1,7 @@
 {
   "provider": "orderdesk",
   "sources": [
-    "orderdesk-inventory-items-api-openapi.yml",
-    "orderdesk-order-items-api-openapi.yml",
-    "orderdesk-orders-api-openapi.yml",
-    "orderdesk-shipments-api-openapi.yml",
-    "orderdesk-store-api-openapi.yml"
+    "_original/orderdesk-openapi.yml"
   ],
   "outputs": [
     "orderdesk-inventory-items-api-openapi.yml",
@@ -17,6 +13,16 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "orderdesk-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "orderdesk-inventory-items-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "orderdesk-order-items-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "orderdesk-orders-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "orderdesk-shipments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "orderdesk-store-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
