@@ -173,29 +173,42 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  responses:
-    Unauthorized:
-      description: Missing or invalid store ID / API key.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/StatusResponse'
-    RateLimited:
-      description: Rate limit exceeded. Retry after the number of seconds in X-Retry-After.
-      headers:
-        X-Retry-After:
-          schema:
-            type: integer
-          description: Seconds to wait before retrying.
-        X-Tokens-Remaining:
-          schema:
-            type: integer
-          description: Remaining requests in the leaky-bucket window.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/StatusResponse'
+  parameters:
+    Limit:
+      name: limit
+      in: query
+      schema:
+        type: integer
+        default: 50
+        maximum: 500
+      description: Number of records to return (default 50, max 500).
+    InventoryId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the inventory item.
+    Offset:
+      name: offset
+      in: query
+      schema:
+        type: integer
+        default: 0
+      description: Number of records to skip.
   schemas:
+    StatusResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          description: success or error.
+        message:
+          type: string
+        errors:
+          type: array
+          items:
+            type: string
     InventoryItem:
       type: object
       properties:
@@ -218,41 +231,28 @@ components:
         metadata:
           type: object
           additionalProperties: true
-    StatusResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          description: success or error.
-        message:
-          type: string
-        errors:
-          type: array
-          items:
-            type: string
-  parameters:
-    InventoryId:
-      name: id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The ID of the inventory item.
-    Offset:
-      name: offset
-      in: query
-      schema:
-        type: integer
-        default: 0
-      description: Number of records to skip.
-    Limit:
-      name: limit
-      in: query
-      schema:
-        type: integer
-        default: 50
-        maximum: 500
-      description: Number of records to return (default 50, max 500).
+  responses:
+    Unauthorized:
+      description: Missing or invalid store ID / API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/StatusResponse'
+    RateLimited:
+      description: Rate limit exceeded. Retry after the number of seconds in X-Retry-After.
+      headers:
+        X-Retry-After:
+          schema:
+            type: integer
+          description: Seconds to wait before retrying.
+        X-Tokens-Remaining:
+          schema:
+            type: integer
+          description: Remaining requests in the leaky-bucket window.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/StatusResponse'
   securitySchemes:
     storeId:
       type: apiKey

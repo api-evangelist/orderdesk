@@ -212,28 +212,6 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  responses:
-    Unauthorized:
-      description: Missing or invalid store ID / API key.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/StatusResponse'
-    RateLimited:
-      description: Rate limit exceeded. Retry after the number of seconds in X-Retry-After.
-      headers:
-        X-Retry-After:
-          schema:
-            type: integer
-          description: Seconds to wait before retrying.
-        X-Tokens-Remaining:
-          schema:
-            type: integer
-          description: Remaining requests in the leaky-bucket window.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/StatusResponse'
   schemas:
     Shipment:
       type: object
@@ -252,27 +230,18 @@ components:
           type: number
         ship_date:
           type: string
-    OrderItem:
+    StatusResponse:
       type: object
       properties:
-        id:
+        status:
           type: string
-        name:
+          description: success or error.
+        message:
           type: string
-        code:
-          type: string
-        price:
-          type: number
-        quantity:
-          type: integer
-        weight:
-          type: number
-        variation_list:
-          type: object
-          additionalProperties: true
-        metadata:
-          type: object
-          additionalProperties: true
+        errors:
+          type: array
+          items:
+            type: string
     Order:
       type: object
       properties:
@@ -313,18 +282,27 @@ components:
           type: string
         date_updated:
           type: string
-    StatusResponse:
+    OrderItem:
       type: object
       properties:
-        status:
+        id:
           type: string
-          description: success or error.
-        message:
+        name:
           type: string
-        errors:
-          type: array
-          items:
-            type: string
+        code:
+          type: string
+        price:
+          type: number
+        quantity:
+          type: integer
+        weight:
+          type: number
+        variation_list:
+          type: object
+          additionalProperties: true
+        metadata:
+          type: object
+          additionalProperties: true
     OrderResponse:
       type: object
       properties:
@@ -333,13 +311,13 @@ components:
         order:
           $ref: '#/components/schemas/Order'
   parameters:
-    Offset:
-      name: offset
-      in: query
+    OrderId:
+      name: order_id
+      in: path
+      required: true
       schema:
-        type: integer
-        default: 0
-      description: Number of records to skip.
+        type: string
+      description: The ID of the order.
     Limit:
       name: limit
       in: query
@@ -348,13 +326,35 @@ components:
         default: 50
         maximum: 500
       description: Number of records to return (default 50, max 500).
-    OrderId:
-      name: order_id
-      in: path
-      required: true
+    Offset:
+      name: offset
+      in: query
       schema:
-        type: string
-      description: The ID of the order.
+        type: integer
+        default: 0
+      description: Number of records to skip.
+  responses:
+    Unauthorized:
+      description: Missing or invalid store ID / API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/StatusResponse'
+    RateLimited:
+      description: Rate limit exceeded. Retry after the number of seconds in X-Retry-After.
+      headers:
+        X-Retry-After:
+          schema:
+            type: integer
+          description: Seconds to wait before retrying.
+        X-Tokens-Remaining:
+          schema:
+            type: integer
+          description: Remaining requests in the leaky-bucket window.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/StatusResponse'
   securitySchemes:
     storeId:
       type: apiKey

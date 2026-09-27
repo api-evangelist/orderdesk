@@ -126,6 +126,40 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  schemas:
+    StatusResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          description: success or error.
+        message:
+          type: string
+        errors:
+          type: array
+          items:
+            type: string
+    OrderItem:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        code:
+          type: string
+        price:
+          type: number
+        quantity:
+          type: integer
+        weight:
+          type: number
+        variation_list:
+          type: object
+          additionalProperties: true
+        metadata:
+          type: object
+          additionalProperties: true
   responses:
     Unauthorized:
       description: Missing or invalid store ID / API key.
@@ -148,40 +182,6 @@ components:
       schema:
         type: string
       description: The ID of the order.
-  schemas:
-    OrderItem:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        code:
-          type: string
-        price:
-          type: number
-        quantity:
-          type: integer
-        weight:
-          type: number
-        variation_list:
-          type: object
-          additionalProperties: true
-        metadata:
-          type: object
-          additionalProperties: true
-    StatusResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          description: success or error.
-        message:
-          type: string
-        errors:
-          type: array
-          items:
-            type: string
   securitySchemes:
     storeId:
       type: apiKey
