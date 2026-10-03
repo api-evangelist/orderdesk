@@ -160,13 +160,6 @@ components:
         metadata:
           type: object
           additionalProperties: true
-  responses:
-    Unauthorized:
-      description: Missing or invalid store ID / API key.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/StatusResponse'
   parameters:
     ItemId:
       name: item_id
@@ -182,6 +175,13 @@ components:
       schema:
         type: string
       description: The ID of the order.
+  responses:
+    Unauthorized:
+      description: Missing or invalid store ID / API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/StatusResponse'
   securitySchemes:
     storeId:
       type: apiKey

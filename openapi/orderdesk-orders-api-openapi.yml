@@ -213,6 +213,39 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
+    StatusResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          description: success or error.
+        message:
+          type: string
+        errors:
+          type: array
+          items:
+            type: string
+    OrderItem:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        code:
+          type: string
+        price:
+          type: number
+        quantity:
+          type: integer
+        weight:
+          type: number
+        variation_list:
+          type: object
+          additionalProperties: true
+        metadata:
+          type: object
+          additionalProperties: true
     Shipment:
       type: object
       properties:
@@ -230,18 +263,13 @@ components:
           type: number
         ship_date:
           type: string
-    StatusResponse:
+    OrderResponse:
       type: object
       properties:
         status:
           type: string
-          description: success or error.
-        message:
-          type: string
-        errors:
-          type: array
-          items:
-            type: string
+        order:
+          $ref: '#/components/schemas/Order'
     Order:
       type: object
       properties:
@@ -282,42 +310,7 @@ components:
           type: string
         date_updated:
           type: string
-    OrderItem:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        code:
-          type: string
-        price:
-          type: number
-        quantity:
-          type: integer
-        weight:
-          type: number
-        variation_list:
-          type: object
-          additionalProperties: true
-        metadata:
-          type: object
-          additionalProperties: true
-    OrderResponse:
-      type: object
-      properties:
-        status:
-          type: string
-        order:
-          $ref: '#/components/schemas/Order'
   parameters:
-    OrderId:
-      name: order_id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The ID of the order.
     Limit:
       name: limit
       in: query
@@ -333,6 +326,13 @@ components:
         type: integer
         default: 0
       description: Number of records to skip.
+    OrderId:
+      name: order_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the order.
   responses:
     Unauthorized:
       description: Missing or invalid store ID / API key.

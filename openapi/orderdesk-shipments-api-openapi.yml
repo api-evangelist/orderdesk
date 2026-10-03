@@ -154,6 +154,18 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
+    StatusResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          description: success or error.
+        message:
+          type: string
+        errors:
+          type: array
+          items:
+            type: string
     Shipment:
       type: object
       properties:
@@ -171,25 +183,6 @@ components:
           type: number
         ship_date:
           type: string
-    StatusResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          description: success or error.
-        message:
-          type: string
-        errors:
-          type: array
-          items:
-            type: string
-  responses:
-    Unauthorized:
-      description: Missing or invalid store ID / API key.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/StatusResponse'
   parameters:
     ShipmentId:
       name: shipment_id
@@ -205,6 +198,13 @@ components:
       schema:
         type: string
       description: The ID of the order.
+  responses:
+    Unauthorized:
+      description: Missing or invalid store ID / API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/StatusResponse'
   securitySchemes:
     storeId:
       type: apiKey
