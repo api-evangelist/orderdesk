@@ -174,18 +174,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    StatusResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          description: success or error.
-        message:
-          type: string
-        errors:
-          type: array
-          items:
-            type: string
     InventoryItem:
       type: object
       properties:
@@ -208,29 +196,18 @@ components:
         metadata:
           type: object
           additionalProperties: true
-  parameters:
-    Limit:
-      name: limit
-      in: query
-      schema:
-        type: integer
-        default: 50
-        maximum: 500
-      description: Number of records to return (default 50, max 500).
-    InventoryId:
-      name: id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The ID of the inventory item.
-    Offset:
-      name: offset
-      in: query
-      schema:
-        type: integer
-        default: 0
-      description: Number of records to skip.
+    StatusResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          description: success or error.
+        message:
+          type: string
+        errors:
+          type: array
+          items:
+            type: string
   responses:
     Unauthorized:
       description: Missing or invalid store ID / API key.
@@ -253,6 +230,29 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/StatusResponse'
+  parameters:
+    InventoryId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the inventory item.
+    Limit:
+      name: limit
+      in: query
+      schema:
+        type: integer
+        default: 50
+        maximum: 500
+      description: Number of records to return (default 50, max 500).
+    Offset:
+      name: offset
+      in: query
+      schema:
+        type: integer
+        default: 0
+      description: Number of records to skip.
   securitySchemes:
     storeId:
       type: apiKey

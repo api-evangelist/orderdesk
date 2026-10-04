@@ -153,6 +153,13 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  responses:
+    Unauthorized:
+      description: Missing or invalid store ID / API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/StatusResponse'
   schemas:
     StatusResponse:
       type: object
@@ -184,13 +191,6 @@ components:
         ship_date:
           type: string
   parameters:
-    ShipmentId:
-      name: shipment_id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The ID of the shipment.
     OrderId:
       name: order_id
       in: path
@@ -198,13 +198,13 @@ components:
       schema:
         type: string
       description: The ID of the order.
-  responses:
-    Unauthorized:
-      description: Missing or invalid store ID / API key.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/StatusResponse'
+    ShipmentId:
+      name: shipment_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the shipment.
   securitySchemes:
     storeId:
       type: apiKey
