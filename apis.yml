@@ -52,7 +52,7 @@ tags_raw:
 - Inventory
 - Shipping
 created: '2026-07-11'
-modified: '2026-07-11'
+modified: '2026-10-06'
 specificationVersion: '0.23'
 apis:
 - aid: orderdesk:orderdesk-inventory-items-api
@@ -148,6 +148,10 @@ apis:
   - type: OpenCollection
     url: collections/orderdesk.opencollection.json
 common:
+- url: https://www.orderdesk.com/blog/
+  type: Blog
+- url: https://www.orderdesk.com/feed/
+  type: BlogRSS
 - type: Pricing
   url: https://www.orderdesk.com/pricing/
 - type: CapabilityMap
