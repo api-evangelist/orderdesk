@@ -387,3 +387,15 @@
   source: edge
   status: pending-generation
   arazzo: null
+- slug: orderdesk-shopify-own
+  label: Shopify (own)
+  partner: shopify
+  partner_name: Shopify (own)
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://apps.shopify.com/order-desk
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
