@@ -15,6 +15,7 @@
   evidence: https://zapier.com/apps/google-sheets/integrations/order-desk/140235/add-new-order-desk-orders-as-rows-to-google-sheets-spreadsheets
   template: https://zapier.com/apps/google-sheets/integrations/order-desk/140235/add-new-order-desk-orders-as-rows-to-google-sheets-spreadsheets
   source: template
+  relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
 - slug: orderdesk-add-new-order-desk-orders-to-google-sheets-as-multiple-rows
@@ -29,6 +30,7 @@
   evidence: https://zapier.com/apps/google-sheets/integrations/order-desk/1237548/add-new-order-desk-orders-to-google-sheets-as-multiple-rows
   template: https://zapier.com/apps/google-sheets/integrations/order-desk/1237548/add-new-order-desk-orders-to-google-sheets-as-multiple-rows
   source: template
+  relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
 - slug: orderdesk-add-new-order-desk-orders-to-google-sheets-rows
@@ -43,10 +45,12 @@
   evidence: https://zapier.com/apps/google-sheets/integrations/order-desk/158196/add-new-order-desk-orders-to-google-sheets-rows
   template: https://zapier.com/apps/google-sheets/integrations/order-desk/158196/add-new-order-desk-orders-to-google-sheets-rows
   source: template
+  relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
 - slug: orderdesk-create-sales-receipts-in-quickbooks-online-from-new-order-desk-orders
   label: Create sales receipts in QuickBooks Online from new Order Desk orders
+  partner: quickbooks
   partner_name: QuickBooks Online
   category: Accounting
   use_case: Create sales receipts in QuickBooks Online from new Order Desk orders
@@ -56,6 +60,7 @@
   evidence: https://zapier.com/apps/order-desk/integrations/quickbooks/140255/create-sales-receipts-in-quickbooks-online-from-new-order-desk-orders
   template: https://zapier.com/apps/order-desk/integrations/quickbooks/140255/create-sales-receipts-in-quickbooks-online-from-new-order-desk-orders
   source: template
+  relationship: ipaas-bridge
   status: pending-partner-spec
   arazzo: null
 - slug: orderdesk-update-contacts-xero-when-new-orders-are-received-in-order-desk
@@ -70,321 +75,7 @@
   evidence: https://zapier.com/apps/order-desk/integrations/xero/141618/update-contacts-xero-when-new-orders-are-received-in-order-desk
   template: https://zapier.com/apps/order-desk/integrations/xero/141618/update-contacts-xero-when-new-orders-are-received-in-order-desk
   source: template
-  status: pending-generation
-  arazzo: null
-- slug: orderdesk-firebase-firestore
-  label: Firebase / Firestore
-  partner_name: Firebase / Firestore
-  category: Databases
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/order-desk/integrations/firebase
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: orderdesk-pipedrive
-  label: Pipedrive
-  partner: pipedrive
-  partner_name: Pipedrive
-  category: CRM (Customer Relationship Management)
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/order-desk/integrations/pipedrive
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: orderdesk-clickup
-  label: ClickUp
-  partner: clickup
-  partner_name: ClickUp
-  category: Project Management
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/order-desk/integrations/clickup
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: orderdesk-codereadr
-  label: CodeREADr
-  partner_name: CodeREADr
-  category: Event Management
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/order-desk/integrations/codereadr
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: orderdesk-saasu
-  label: Saasu
-  partner_name: Saasu
-  category: Accounting
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/order-desk/integrations/saasu
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: orderdesk-twilio
-  label: Twilio
-  partner: twilio
-  partner_name: Twilio
-  category: Phone & SMS
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/order-desk/integrations/twilio
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: orderdesk-printavo
-  label: Printavo
-  partner: printavo
-  partner_name: Printavo
-  category: Printing
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/order-desk/integrations/printavo
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: orderdesk-veeqo
-  label: Veeqo
-  partner_name: Veeqo
-  category: eCommerce
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/order-desk/integrations/veeqo
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: orderdesk-square
-  label: Square
-  partner: square
-  partner_name: Square
-  category: eCommerce
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/order-desk/integrations/square
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: orderdesk-invoice-ninja
-  label: Invoice Ninja
-  partner: invoice-ninja
-  partner_name: Invoice Ninja
-  category: Proposal & Invoice Management
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/order-desk/integrations/invoice-ninja
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: orderdesk-waitwhile
-  label: Waitwhile
-  partner_name: Waitwhile
-  category: Scheduling & Booking
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/order-desk/integrations/waitwhile
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: orderdesk-shopify
-  label: Shopify
-  partner: shopify
-  partner_name: Shopify
-  category: eCommerce
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/order-desk/integrations/shopify
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: orderdesk-hubspot
-  label: HubSpot
-  partner: hubspot
-  partner_name: HubSpot
-  category: Marketing Automation
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/order-desk/integrations/hubspot
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: orderdesk-printnode
-  label: PrintNode
-  partner: printnode
-  partner_name: PrintNode
-  category: Printing
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/order-desk/integrations/PrintNode
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: orderdesk-yoprint
-  label: YoPrint
-  partner_name: YoPrint
-  category: Printing
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/order-desk/integrations/yoprint
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: orderdesk-tookan
-  label: Tookan
-  partner_name: Tookan
-  category: Scheduling & Booking
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/order-desk/integrations/tookan
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: orderdesk-woocommerce
-  label: WooCommerce
-  partner: woocommerce
-  partner_name: WooCommerce
-  category: eCommerce
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/order-desk/integrations/woocommerce
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: orderdesk-drip
-  label: Drip
-  partner: drip
-  partner_name: Drip
-  category: Drip Emails
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/order-desk/integrations/drip
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: orderdesk-dropbox
-  label: Dropbox
-  partner: dropbox
-  partner_name: Dropbox
-  category: File Management & Storage
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/order-desk/integrations/dropbox
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: orderdesk-honeybook
-  label: HoneyBook
-  partner: honeybook
-  partner_name: HoneyBook
-  category: CRM (Customer Relationship Management)
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/order-desk/integrations/honeybook
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: orderdesk-wufoo
-  label: Wufoo
-  partner: wufoo
-  partner_name: Wufoo
-  category: Forms & Surveys
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/order-desk/integrations/wufoo
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: orderdesk-box
-  label: Box
-  partner: box
-  partner_name: Box
-  category: File Management & Storage
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/order-desk/integrations/box
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: orderdesk-streak
-  label: Streak
-  partner: streak
-  partner_name: Streak
-  category: CRM (Customer Relationship Management)
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/order-desk/integrations/streak
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: orderdesk-proofer
-  label: Proofer
-  partner_name: Proofer
-  category: File Management & Storage
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/order-desk/integrations/proofer
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: orderdesk-google-forms-legacy
-  label: Google Forms (Legacy)
-  partner_name: Google Forms (Legacy)
-  category: Forms & Surveys
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/order-desk/integrations/google-forms-legacy
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: orderdesk-stripe
-  label: Stripe
-  partner: stripe
-  partner_name: Stripe
-  category: Payment Processing
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/order-desk/integrations/stripe
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: orderdesk-telegram
-  label: Telegram
-  partner: telegram
-  partner_name: Telegram
-  category: Phone & SMS
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/order-desk/integrations/telegram
-  source: edge
+  relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
 - slug: orderdesk-chargebee-own
@@ -462,4 +153,347 @@
     sources: true
     builder: Pipedream repo (component)
   status: not-a-workflow
+  arazzo: null
+- slug: orderdesk-firebase-firestore
+  label: Firebase / Firestore
+  partner_name: Firebase / Firestore
+  category: Databases
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/order-desk/integrations/firebase
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: orderdesk-pipedrive
+  label: Pipedrive
+  partner: pipedrive
+  partner_name: Pipedrive
+  category: CRM (Customer Relationship Management)
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/order-desk/integrations/pipedrive
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: orderdesk-clickup
+  label: ClickUp
+  partner: clickup
+  partner_name: ClickUp
+  category: Project Management
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/order-desk/integrations/clickup
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: orderdesk-codereadr
+  label: CodeREADr
+  partner_name: CodeREADr
+  category: Event Management
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/order-desk/integrations/codereadr
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: orderdesk-saasu
+  label: Saasu
+  partner_name: Saasu
+  category: Accounting
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/order-desk/integrations/saasu
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: orderdesk-twilio
+  label: Twilio
+  partner: twilio
+  partner_name: Twilio
+  category: Phone & SMS
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/order-desk/integrations/twilio
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: orderdesk-veeqo
+  label: Veeqo
+  partner_name: Veeqo
+  category: eCommerce
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/order-desk/integrations/veeqo
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: orderdesk-hubspot
+  label: HubSpot
+  partner: hubspot
+  partner_name: HubSpot
+  category: Marketing Automation
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/order-desk/integrations/hubspot
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: orderdesk-square
+  label: Square
+  partner: square
+  partner_name: Square
+  category: eCommerce
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/order-desk/integrations/square
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: orderdesk-invoice-ninja
+  label: Invoice Ninja
+  partner: invoice-ninja
+  partner_name: Invoice Ninja
+  category: Proposal & Invoice Management
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/order-desk/integrations/invoice-ninja
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: orderdesk-waitwhile
+  label: Waitwhile
+  partner_name: Waitwhile
+  category: Scheduling & Booking
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/order-desk/integrations/waitwhile
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: orderdesk-shopify
+  label: Shopify
+  partner: shopify
+  partner_name: Shopify
+  category: eCommerce
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/order-desk/integrations/shopify
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: orderdesk-printnode
+  label: PrintNode
+  partner: printnode
+  partner_name: PrintNode
+  category: Printing
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/order-desk/integrations/PrintNode
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: orderdesk-yoprint
+  label: YoPrint
+  partner_name: YoPrint
+  category: Printing
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/order-desk/integrations/yoprint
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: orderdesk-tookan
+  label: Tookan
+  partner_name: Tookan
+  category: Scheduling & Booking
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/order-desk/integrations/tookan
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: orderdesk-woocommerce
+  label: WooCommerce
+  partner: woocommerce
+  partner_name: WooCommerce
+  category: eCommerce
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/order-desk/integrations/woocommerce
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: orderdesk-drip
+  label: Drip
+  partner: drip
+  partner_name: Drip
+  category: Drip Emails
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/order-desk/integrations/drip
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: orderdesk-dropbox
+  label: Dropbox
+  partner: dropbox
+  partner_name: Dropbox
+  category: File Management & Storage
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/order-desk/integrations/dropbox
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: orderdesk-honeybook
+  label: HoneyBook
+  partner: honeybook
+  partner_name: HoneyBook
+  category: CRM (Customer Relationship Management)
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/order-desk/integrations/honeybook
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: orderdesk-wufoo
+  label: Wufoo
+  partner: wufoo
+  partner_name: Wufoo
+  category: Forms & Surveys
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/order-desk/integrations/wufoo
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: orderdesk-box
+  label: Box
+  partner: box
+  partner_name: Box
+  category: File Management & Storage
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/order-desk/integrations/box
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: orderdesk-streak
+  label: Streak
+  partner: streak
+  partner_name: Streak
+  category: CRM (Customer Relationship Management)
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/order-desk/integrations/streak
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: orderdesk-proofer
+  label: Proofer
+  partner_name: Proofer
+  category: File Management & Storage
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/order-desk/integrations/proofer
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: orderdesk-google-forms-legacy
+  label: Google Forms (Legacy)
+  partner: google-forms
+  partner_name: Google Forms (Legacy)
+  category: Forms & Surveys
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/order-desk/integrations/google-forms-legacy
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: orderdesk-stripe
+  label: Stripe
+  partner: stripe
+  partner_name: Stripe
+  category: Payment Processing
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/order-desk/integrations/stripe
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: orderdesk-telegram
+  label: Telegram
+  partner: telegram
+  partner_name: Telegram
+  category: Phone & SMS
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/order-desk/integrations/telegram
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: orderdesk-instagram-for-business
+  label: Instagram for Business
+  partner: instagram
+  partner_name: Instagram for Business
+  category: Facebook
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/order-desk/integrations/instagram-for-business
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
   arazzo: null
