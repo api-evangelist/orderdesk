@@ -3,8 +3,10 @@ method: searched
 source:
 - https://zapier.com/apps/order-desk/integrations
 checked:
+- chargebee/integrations/chargebee-integration-edges.yml
 - https://composio.dev/toolkits/orderdesk
 - https://github.com/PipedreamHQ/pipedream/tree/94800dd6de6640b942c65ea7ee655f71ac56d438/components/
+- https://github.com/PipedreamHQ/pipedream/tree/d5872355ef27b4efa769f05352f2820c299a456e/components/
 - https://monid.ai/tools/orderdesk
 - https://n8n.io/integrations/orderdesk/
 - https://zapier.com/api/v4/apps/
@@ -373,6 +375,23 @@ edges:
   direction: third-party
   category: Phone & SMS
   partner_url: https://telegram.org/
+- partner_name: Chargebee (own)
+  partner: chargebee
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://marketplace.chargebee.com/apps/['orderdesk']
+  mirror_of: chargebee/integrations/chargebee-integration-edges.yml
+  apps:
+  - Order Desk
+  listing_count: 1
+  detected: '2026-10-19'
+  detected_by: mirror-platform-listings.py
+  category: Ecommerce & Order Management
 - partner_name: Shopify (own)
   partner: shopify
   partner_match: mirror
@@ -422,7 +441,7 @@ edges:
   channel: open-source-node
   relationship: ipaas-bridge
   direction: third-party
-  evidence: https://github.com/PipedreamHQ/pipedream/tree/94800dd6de6640b942c65ea7ee655f71ac56d438/components/order_desk
+  evidence: https://github.com/PipedreamHQ/pipedream/tree/d5872355ef27b4efa769f05352f2820c299a456e/components/order_desk
   category: null
   contract_reference:
     register: Pipedream components (PipedreamHQ/pipedream components/)
