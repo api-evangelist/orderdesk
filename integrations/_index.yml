@@ -497,3 +497,15 @@
   relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
+- slug: orderdesk-yotpo-own
+  label: Yotpo (own)
+  partner: yotpo
+  partner_name: Yotpo (own)
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://www.yotpo.com/integrations/order-desk/
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null

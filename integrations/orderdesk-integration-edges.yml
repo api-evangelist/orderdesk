@@ -13,6 +13,7 @@ checked:
 - https://zapier.com/apps/order-desk/integrations
 - https://zapier.com/apps/orderdesk/integrations
 - shopify/integrations/shopify-integration-edges.yml
+- yotpo/integrations/yotpo-integration-edges.yml
 summary: null
 marketplace_apps:
 - marketplace: zapier
@@ -489,6 +490,22 @@ edges:
   direction: third-party
   category: Facebook
   partner_url: https://instagram.com/
+- partner_name: Yotpo (own)
+  partner: yotpo
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://www.yotpo.com/integrations/order-desk/
+  mirror_of: yotpo/integrations/yotpo-integration-edges.yml
+  apps:
+  - Order Desk
+  listing_count: 1
+  detected: '2026-10-20'
+  detected_by: mirror-platform-listings.py
 templates:
 - title: Add new Order Desk orders as rows to Google Sheets spreadsheets
   url: https://zapier.com/apps/google-sheets/integrations/order-desk/140235/add-new-order-desk-orders-as-rows-to-google-sheets-spreadsheets
