@@ -78,31 +78,6 @@
   relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
-- slug: orderdesk-chargebee-own
-  label: Chargebee (own)
-  partner: chargebee
-  partner_name: Chargebee (own)
-  category: Ecommerce & Order Management
-  type: marketplace
-  marketplace: own
-  channel: partner-built
-  evidence: https://marketplace.chargebee.com/apps/['orderdesk']
-  source: edge
-  relationship: platform-app
-  status: not-a-workflow
-  arazzo: null
-- slug: orderdesk-shopify-own
-  label: Shopify (own)
-  partner: shopify
-  partner_name: Shopify (own)
-  type: marketplace
-  marketplace: own
-  channel: partner-built
-  evidence: https://apps.shopify.com/order-desk
-  source: edge
-  relationship: platform-app
-  status: not-a-workflow
-  arazzo: null
 - slug: orderdesk-zapier
   label: Zapier
   partner: zapier
@@ -497,6 +472,31 @@
   relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
+- slug: orderdesk-chargebee-own
+  label: Chargebee (own)
+  partner: chargebee
+  partner_name: Chargebee (own)
+  category: Ecommerce & Order Management
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://marketplace.chargebee.com/apps/['orderdesk']
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: orderdesk-shopify-own
+  label: Shopify (own)
+  partner: shopify
+  partner_name: Shopify (own)
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://apps.shopify.com/order-desk
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
 - slug: orderdesk-yotpo-own
   label: Yotpo (own)
   partner: yotpo
@@ -505,6 +505,19 @@
   marketplace: own
   channel: partner-built
   evidence: https://www.yotpo.com/integrations/order-desk/
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: orderdesk-bigcommerce-own
+  label: BigCommerce (own)
+  partner: bigcommerce
+  partner_name: BigCommerce (own)
+  category: Catalog & Order Management, Inventory & Order Management
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://www.bigcommerce.com/apps/order-desk/
   source: edge
   relationship: platform-app
   status: not-a-workflow

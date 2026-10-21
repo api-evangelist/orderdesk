@@ -14,6 +14,7 @@ checked:
 - https://zapier.com/apps/orderdesk/integrations
 - shopify/integrations/shopify-integration-edges.yml
 - yotpo/integrations/yotpo-integration-edges.yml
+- bigcommerce/integrations/bigcommerce-integration-edges.yml
 summary: null
 marketplace_apps:
 - marketplace: zapier
@@ -46,39 +47,6 @@ marketplace_apps:
   - key: get_order
     label: Get Order
 edges:
-- partner_name: Chargebee (own)
-  partner: chargebee
-  partner_match: mirror
-  mirror_match: domain
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: own
-  evidence: https://marketplace.chargebee.com/apps/['orderdesk']
-  mirror_of: chargebee/integrations/chargebee-integration-edges.yml
-  apps:
-  - Order Desk
-  listing_count: 1
-  detected: '2026-10-19'
-  detected_by: mirror-platform-listings.py
-  category: Ecommerce & Order Management
-- partner_name: Shopify (own)
-  partner: shopify
-  partner_match: mirror
-  mirror_match: domain
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: own
-  evidence: https://apps.shopify.com/order-desk
-  mirror_of: shopify/integrations/shopify-integration-edges.yml
-  apps:
-  - Order Desk
-  listing_count: 1
-  detected: '2026-10-15'
-  detected_by: mirror-platform-listings.py
 - partner_name: Zapier
   partner: zapier
   partner_match: aggregator
@@ -490,6 +458,39 @@ edges:
   direction: third-party
   category: Facebook
   partner_url: https://instagram.com/
+- partner_name: Chargebee (own)
+  partner: chargebee
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://marketplace.chargebee.com/apps/['orderdesk']
+  mirror_of: chargebee/integrations/chargebee-integration-edges.yml
+  apps:
+  - Order Desk
+  listing_count: 1
+  detected: '2026-10-19'
+  detected_by: mirror-platform-listings.py
+  category: Ecommerce & Order Management
+- partner_name: Shopify (own)
+  partner: shopify
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://apps.shopify.com/order-desk
+  mirror_of: shopify/integrations/shopify-integration-edges.yml
+  apps:
+  - Order Desk
+  listing_count: 1
+  detected: '2026-10-15'
+  detected_by: mirror-platform-listings.py
 - partner_name: Yotpo (own)
   partner: yotpo
   partner_match: mirror
@@ -506,6 +507,23 @@ edges:
   listing_count: 1
   detected: '2026-10-20'
   detected_by: mirror-platform-listings.py
+- partner_name: BigCommerce (own)
+  partner: bigcommerce
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://www.bigcommerce.com/apps/order-desk/
+  mirror_of: bigcommerce/integrations/bigcommerce-integration-edges.yml
+  apps:
+  - Order Desk
+  listing_count: 1
+  detected: '2026-10-20'
+  detected_by: mirror-platform-listings.py
+  category: Catalog & Order Management, Inventory & Order Management
 templates:
 - title: Add new Order Desk orders as rows to Google Sheets spreadsheets
   url: https://zapier.com/apps/google-sheets/integrations/order-desk/140235/add-new-order-desk-orders-as-rows-to-google-sheets-spreadsheets
