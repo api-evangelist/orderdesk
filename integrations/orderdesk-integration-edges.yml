@@ -18,6 +18,7 @@ checked:
 - https://advertising.amazon.com/partners/directory
 - https://sellercentral.amazon.com/gspn
 - https://sellercentral.amazon.com/selling-partner-appstore
+- wix/integrations/wix-integration-edges.yml
 summary: null
 marketplace_apps:
 - marketplace: zapier
@@ -461,6 +462,21 @@ edges:
   direction: third-party
   category: Facebook
   partner_url: https://instagram.com/
+- partner_name: Amazon Selling Partner Appstore
+  partner: amazon-seller-central
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://sellercentral.amazon.com/selling-partner-appstore/dp/amzn1.sellerapps.app.1373c850-c372-4adb-90e3-c536b9fdc63e
+  mirror_of: amazon-seller-central/integrations/amazon-seller-central-integration-edges.yml
+  apps:
+  - Order Desk
+  detected: '2026-10-21'
+  detected_by: sweep-amazon-sp-api-appstore.py
 - partner_name: Chargebee (own)
   partner: chargebee
   partner_match: mirror
@@ -527,8 +543,8 @@ edges:
   detected: '2026-10-20'
   detected_by: mirror-platform-listings.py
   category: Catalog & Order Management, Inventory & Order Management
-- partner_name: Amazon Selling Partner Appstore
-  partner: amazon-seller-central
+- partner_name: Wix (own)
+  partner: wix
   partner_match: mirror
   mirror_match: domain
   type: marketplace
@@ -536,12 +552,16 @@ edges:
   direction: third-party
   channel: partner-built
   marketplace: own
-  evidence: https://sellercentral.amazon.com/selling-partner-appstore/dp/amzn1.sellerapps.app.1373c850-c372-4adb-90e3-c536b9fdc63e
-  mirror_of: amazon-seller-central/integrations/amazon-seller-central-integration-edges.yml
+  evidence: https://www.wix.com/app-market/developer/order-desk
+  mirror_of: wix/integrations/wix-integration-edges.yml
   apps:
   - Order Desk
-  detected: '2026-10-21'
-  detected_by: sweep-amazon-sp-api-appstore.py
+  listing_count: 1
+  detected: '2026-10-22'
+  detected_by: mirror-platform-listings.py
+  category: Shipping & Delivery
+  publisher_verified:
+  - Verified by Wix
 templates:
 - title: Add new Order Desk orders as rows to Google Sheets spreadsheets
   url: https://zapier.com/apps/google-sheets/integrations/order-desk/140235/add-new-order-desk-orders-as-rows-to-google-sheets-spreadsheets
